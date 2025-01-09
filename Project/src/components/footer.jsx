@@ -11,14 +11,14 @@ const Footer = () => {
                 {/* Category Name */}
                 <h2 className="mb-6 text-xl font-bold uppercase">{i.name}</h2>
                 <ul
-                  className={`text-black font-bold uppercase ${
-                    i.name === "follow us" ? "text-2xl" : "text-sm"
+                  className={`text-black uppercase ${
+                    i.name === "follow us" ? "text-2xl font-bold" : "text-sm"
                   }`}
                 >
                   {i.listText.map((f, index) => {
                     return (
                       <li className="mb-4" key={index}>
-                        <a className="hover:underline">{f}</a>
+                        <a className="hover:underline capitalize">{f}</a>
                       </li>
                     );
                   })}
@@ -26,6 +26,7 @@ const Footer = () => {
               </div>
             );
           })}
+          {/* not yet build the small device */}
         </section>
       </footer>
     </>
