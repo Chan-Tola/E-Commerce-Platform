@@ -1,7 +1,15 @@
+import { Cards, BannerSlides, PopularRightnow } from "../components/Index";
+
 const HomePage = () => {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">welcom to Home-Page</h1>
+      <section>
+        <BannerSlides />
+      </section>
+      <section className="max-w-[1520px] w-full mx-auto px-4 md:px-8 lg:px-16">
+        <Cards />
+        <PopularRightnow />
+      </section>
     </>
   );
 };

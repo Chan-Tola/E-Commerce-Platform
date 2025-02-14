@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import RootLayout from "./layouts/RootLayout";
-import { ProductDetail, HomePage } from "./pages/Index";
+import { HomePage, CardDetail } from "./pages/Index";
 const Routers = createBrowserRouter([
   {
     path: "/us",
@@ -32,8 +33,8 @@ const Routers = createBrowserRouter([
         element: <h1>Trending Page</h1>,
       },
       {
-        path: "ProductDetail",
-        element: <ProductDetail />,
+        path: ":id",
+        element: <CardDetail />,
       },
     ],
   },

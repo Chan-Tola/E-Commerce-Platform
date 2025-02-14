@@ -1,3 +1,4 @@
+// reason why I use jsx becasue I want to store the Component Icons
 // Import the necessary icons
 import { AiFillTwitterCircle, AiFillTikTok } from "react-icons/ai";
 import {
