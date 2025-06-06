@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    public $table = 'tbproduct'; // this is my dataname for get it to show in the view
-    
-    public $fillable = [
-        'name', 'price', 'quantity', 'image', 'status', 'sell_date',
+    protected $table = 'tbproduct'; // your table name
+
+    protected $fillable = [
+        'name',
+        'price',
+        'quantity',
+        'status',
+        'image',
+        'sell_date',
     ];
 }

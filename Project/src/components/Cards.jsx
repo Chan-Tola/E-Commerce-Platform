@@ -1,14 +1,15 @@
 import { FaArrowLeft, FaArrowRight, FaRegHeart } from "react-icons/fa";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
-import { products } from "../Data/CardData";
+// import { products } from "../Data/CardData";
+import axios from "axios";
 
 const Cards = () => {
   const sliderRef = useRef(null);
-
+  const [products, setProducts] = useState([]);
   const settings = {
     infinite: true,
     speed: 500,
@@ -39,6 +40,16 @@ const Cards = () => {
     ],
   };
 
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/api/products")
+      .then((response) => {
+        setProducts(response.data.data);
+      })
+      .catch((e) => {
+        console.log("API error :", e);
+      });
+  }, []);
   return (
     <div className="relative w-full px-4 ">
       <button className="text-xl font-bold my-[2rem] uppercase border-2 border-black px-6 py-2 tracking-wider transition-all duration-200 hover:bg-black hover:text-white">

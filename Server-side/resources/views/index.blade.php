@@ -30,9 +30,9 @@
                             <img src="{{ asset('storage/' . $product->image) }}" alt="Product Image"
                                 class="w-20 h-20 object-cover rounded">
                         </td>
-                        <td class="px-4 py-2 font-semibold">{{ $product->productName }}</td>
+                        <td class="px-4 py-2 font-semibold">{{ $product->name }}</td>
                         <td class="px-4 py-2">${{ $product->price }}</td>
-                        <td class="px-4 py-2">{{ $product->qty }}</td>
+                        <td class="px-4 py-2">{{ $product->quantity }}</td> <!-- Fixed here -->
                         <td class="px-4 py-2">{{ $product->status }}</td>
                         <td class="px-4 py-2">{{ $product->sell_date }}</td>
                     </tr>
