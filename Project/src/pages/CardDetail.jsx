@@ -23,7 +23,7 @@ const CardDetail = () => {
         {/* Product Image */}
         <div className="w-full md:w-auto flex justify-center">
           <img
-            src={image}
+            src={`http://localhost:8000/${image}`}
             alt={name}
             className="w-[550px] h-[550px]  object-cover shadow-md rounded-lg"
           />
@@ -62,3 +62,5 @@ const CardDetail = () => {
 };
 
 export default CardDetail;
+
+

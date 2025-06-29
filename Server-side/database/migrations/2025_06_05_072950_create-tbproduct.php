@@ -4,15 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-         Schema::create('tbproduct', function (Blueprint $table) {
-           $table->id(); // This creates an auto-incrementing BIGINT (unsigned) primary key named 'id'
+        Schema::create('tbproduct', function (Blueprint $table) {
+            $table->id(); // This creates an auto-incrementing BIGINT (unsigned) primary key named 'id'
             $table->string('name'); // Equivalent to VARCHAR(255) NOT NULL
             $table->decimal('price', 10, 2); // Equivalent to DECIMAL(10, 2) NOT NULL
             $table->integer('quantity')->default(0); // Equivalent to INT NOT NULL DEFAULT 0
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-    Schema::dropIfExists('tbproduct');
+        Schema::dropIfExists('tbproduct');
     }
 };

@@ -67,7 +67,7 @@ const Cards = () => {
               <Link to={id.toString()}>
                 <figure className="relative w-[280px] md:w-[250px] sm:w-[220px] h-[350px] bg-gray-100 shadow-md rounded-lg overflow-hidden">
                   <img
-                    src={image}
+                    src={`http://localhost:8000/${image}`}
                     alt={name}
                     className="h-full w-full object-cover"
                   />
