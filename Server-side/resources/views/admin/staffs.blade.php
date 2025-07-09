@@ -18,7 +18,7 @@
                 <table class="min-w-full text-sm text-gray-700">
                     <thead class="bg-gray-50 uppercase text-xs text-gray-500 border-b">
                         <tr>
-                            <th class="px-6 py-3 text-left">ID</th>
+                            <th class="px-6 py-3 text-left">N <sup>0</sup></th>
                             <th class="px-6 py-3 text-left">Full Name</th>
                             <th class="px-6 py-3 text-left">Email</th>
                             <th class="px-6 py-3 text-left">Role</th>
@@ -27,9 +27,9 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
-                        @foreach ($staffs as $member)
+                        @foreach ($staffs as $index => $member)
                             <tr class="hover:bg-gray-50 transition">
-                                <td class="px-6 py-4">{{ $loop->iteration }}</td>
+                                <td class="px-6 py-4">{{ $index + 1 }}</td>
                                 <!-- Profile image + full name -->
                                 <td class="px-6 py-4 flex items-center space-x-3">
                                     {{-- <img src="{{ $member->profile_picture ?? 'https://via.placeholder.com/40x40?text=👤' }}"
@@ -52,13 +52,13 @@
                                         {{ ucfirst(str_replace('_', ' ', $member->status)) }}
                                     </span>
                                 </td>
-                                {{-- <td class="px-6 py-4 text-right space-x-2">
-                                    <a href="{{ route('staff.edit', $member->id) }}"
-                                        class="text-indigo-500 hover:text-indigo-700">
+                                <td class="px-6 py-4 text-right space-x-2">
+                                    {{-- {{ route('staff.edit', $member->id) }} --}}
+                                    <a href="#" class="text-indigo-500 hover:text-indigo-700">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form action="{{ route('staff.destroy', $member->id) }}" method="POST"
-                                        class="inline-block">
+                                    {{-- {{ route('staff.destroy', $member->id) }} --}}
+                                    <form action="#" method="POST" class="inline-block">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" onclick="return confirm('Are you sure?')"
@@ -66,7 +66,7 @@
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
-                                </td> --}}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

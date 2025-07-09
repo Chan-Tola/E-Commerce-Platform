@@ -10,7 +10,7 @@
         </div>
         <button type="button"
             class="text-white cursor-pointer text-center bg-blue-700 hover:bg-blue-800 rounded-lg font-semibold text-md px-5 py-2.5 me-2 mb-2">
-            <a href="product/create">
+            <a href="{{ route('proCreate') }}">
                 Add New Product
                 <i class="fa-solid fa-plus px-3"></i>
             </a>
@@ -22,7 +22,7 @@
         <table class="w-full text-sm">
             <thead class="bg-gray-50 text-gray-500">
                 <tr>
-                    <th class="px-6 py-3 text-left font-medium">ID</th>
+                    <th class="px-6 py-3 text-left font-medium">N <sup>0</sup></th>
                     <th class="px-6 py-3 text-left font-medium">Image</th>
                     <th class="px-6 py-3 text-left font-medium">Name</th>
                     <th class="px-6 py-3 text-left font-medium">Price</th>
@@ -33,11 +33,10 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 bg-white">
-                @foreach ($products as $product)
+                @foreach ($products as $index => $product)
                     <tr class="product-row hover:bg-gray-50 transition-colors duration-150">
-                        {{-- <td class="px-6 py-4 font-medium text-gray-900">#PRD-001</td> --}}
                         <td class="px-4 py-2">
-                            <div class="font-medium">{{ $product->id }}</div>
+                            <div class="font-medium">{{ $index + 1 }}</div>
                         </td>
                         <td class="px-4 py-2">
                             <img src="{{ asset($product->image) }}" alt="Product Image"
@@ -80,7 +79,7 @@
                             <div class="flex justify-end space-x-2">
                                 {{-- button update --}}
                                 <button class="p-2 rounded-lg hover:bg-gray-100 text-gray-600">
-                                    <a href="/product/{{ $product->id }}/edit"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('proUpdate', $product->id) }}"><i class="fas fa-edit"></i></a>
                                 </button>
                                 {{-- button delete --}}
                                 <div x-data="{ showDelete: false }">

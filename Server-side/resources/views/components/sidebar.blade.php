@@ -11,18 +11,26 @@
     </div>
 
     <nav class="p-4 top-14 fixed space-y-1 mt-3">
-        <a href="/" class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200">
+        <a href="{{ route('index') }}"
+            class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200">
             <i class="fas fa-box  text-primary-600  mr-3 text-lg"></i>
             <span class="font-medium">View Products</span>
         </a>
-        <a href="/staffs" class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200">
+        <a href="{{ route('staffs') }}"
+            class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200">
             <i class="fa-solid fa-user text-primary-600  mr-3 text-lg"></i>
             <span class="font-medium">View Staffs</span>
         </a>
 
-        <a href="/users" class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200">
+        <a href="{{ route('users') }}"
+            class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200">
             <i class="fa-solid fa-users text-primary-600 mr-3 text-lg"></i>
             <span class="font-medium">View Users</span>
+        </a>
+        <a href="{{ route('users') }}"
+            class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200">
+            <i class="fa-solid fa-users text-primary-600 mr-3 text-lg"></i>
+            <span class="font-medium">Order</span>
         </a>
 
         {{-- <a href="#" class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200">
@@ -36,8 +44,8 @@
                 <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full object-cover"
                     alt="Admin">
                 <div>
-                    <p class="font-medium text-gray-800">Admin User</p>
-                    <p class="text-xs text-primary-600">Administrator</p>
+                    {{-- <p class="font-medium text-gray-800">{{ $staffs->full_name }}</p> --}}
+                    {{-- <p class="text-xs text-primary-600">{{ $staffs->role }}</p> --}}
                 </div>
             </div>
             <button class="text-primary-600 hover:text-gray-700">

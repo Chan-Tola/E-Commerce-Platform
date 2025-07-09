@@ -57,12 +57,12 @@ class ProductWebController extends Controller
             'sell_date' => $request->sell_date,
             'image' => $imagePath,
         ]);
-
+ 
         return redirect('/product/create')->with('success', 'Created');
     }
 
     // Show the edit form
-    public function edit($id)
+    public function edit($id) 
     {
         $product = Product::find($id);
         return view('products.update', compact('product'));
@@ -106,4 +106,4 @@ class ProductWebController extends Controller
         Product::find($id)->delete();
         return response()->json(['success' => true, 'message' => 'Product deleted successfully!']);
     }
-}
+} 

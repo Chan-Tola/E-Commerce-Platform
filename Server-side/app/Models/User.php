@@ -2,21 +2,41 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
-    protected $table = 'users';
+    const TABLENAME = 'users';
+    const ID = 'id';
+    const USERNAME = 'name';
+    const USEREMAIL = 'email';
+    const USERPASSWORD = 'password';
+    const USERCONTACT = 'phone';
+    const USEREADDRESS = 'address';
+    const USERROLE = 'role';
+
     // 1. fillable fields (mass-assignable)
-    protected $fillable = ['id', 'name', 'email', 'phone', 'address', 'password', 'role'];
+    protected $fillable =
+    [
+        self::USERNAME,
+        self::USEREMAIL, 
+        self::USERPASSWORD,
+        self::USERCONTACT,
+        self::USEREADDRESS,
+        self::USERROLE,
+    ];
     // 2. hiiden fields (not returned in JSON)
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden =
+    [
+        'password',
+        'remember_token'
+    ];
     // 3. Casts (type conversions)
-    protected $casts = [
+    protected $casts =
+    [
         'email_verified_at' => 'datetime',
     ];
     // 4. Auto-hash password (optional but recommended)

@@ -1,5 +1,6 @@
 @extends('components.header')
 @section('title', 'Form Add')
+
 <body class="bg-gray-50">
     <div class="flex min-h-screen">
         @include('components.sidebar')
@@ -8,8 +9,9 @@
             @include('components.navbar')
             <!-- Content Area -->
             <main class="flex-1 overflow-y-auto p-6">
-                <form action="/product/store" class="max-w-xl mx-auto p-6 bg-white shadow-lg rounded-2xl space-y-4"
-                    method="POST" enctype="multipart/form-data">
+                <form action="{{ route('proStore') }}"
+                    class="max-w-xl mx-auto p-6 bg-white shadow-lg rounded-2xl space-y-4" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     {{-- @csrf this is using for token --}}
 

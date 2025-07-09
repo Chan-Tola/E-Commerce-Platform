@@ -1,30 +1,29 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    /**
-     * Run the migrations.
-     */
+    /*
+        Run the migrations.
+    */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create(User::TABLENAME, function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
-            $table->string('password');
-
+            $table->string(User::USERNAME);
+            $table->string(User::USEREMAIL)->unique();
+            $table->string(User::USERPASSWORD);
+            $table->string(User::USERCONTACT)->nullable();
+            $table->string(User::USEREADDRESS)->nullable();
             // role/permission
-            $table->enum('role', ['user', 'admin'])->default('user');
+            $table->enum(User::USERROLE, ['user', 'admin'])->default('user');
             $table->rememberToken(); // for login session
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */

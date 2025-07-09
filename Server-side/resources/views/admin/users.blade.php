@@ -12,7 +12,7 @@
                 <table class="min-w-full text-sm text-gray-700">
                     <thead class="bg-gray-50 uppercase text-xs text-gray-500 border-b">
                         <tr>
-                            <th class="px-6 py-3 text-left">ID</th>
+                            <th class="px-6 py-3 text-left">N <sup>0</sup></th>
                             <th class="px-6 py-3 text-left">Full Name</th>
                             <th class="px-6 py-3 text-left">Email</th>
                             <th class="px-6 py-3 text-left">Password</th>
@@ -23,9 +23,9 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
-                        @foreach ($users as $user)
+                        @foreach ($users as $index => $user)
                             <tr class="hover:bg-gray-50 transition">
-                                <td class="px-6 py-4 font-medium">{{ $user->id }}</td>
+                                <td class="px-6 py-4 font-medium">{{ $index + 1 }}</td>
                                 <td class="px-6 py-4">{{ $user->name }}</td>
                                 <td class="px-6 py-4">{{ $user->email }}</td>
                                 <td class="px-6 py-4 truncate max-w-[160px] text-gray-500">{{ $user->password }}</td>

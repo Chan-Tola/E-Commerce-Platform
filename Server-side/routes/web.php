@@ -6,22 +6,30 @@ use App\Http\Controllers\UserWebController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
-// root page
-Route::get('/', [ProductWebController::class, 'index'])->name('products.index');
-// fm input data page
-Route::get('/product/create', [ProductWebController::class, 'create'])->name('products.create');
-// store data from fm to database
-Route::post('/product/store', [ProductWebController::class, 'store'])->name('/product/create');
+// Group of Product Route
 
-// open fm for update  data
-Route::get('/product/{id}/edit', [ProductWebController::class, 'edit'])->name('products.update');
-// updated data from fm to database
-Route::put('/product/update/{id}', [ProductWebController::class, 'update'])->name('products.edit');
+// index page
+Route::get('/', [ProductWebController::class, 'index'])->name('index');
+// create product page
+Route::get('/product/create', [ProductWebController::class, 'create'])->name('proCreate');
+// store product data to database
+Route::post('/product/store', [ProductWebController::class, 'store'])->name('proStore');
+// update product page
+Route::get('/product/{id}/edit', [ProductWebController::class, 'edit'])->name('proUpdate');
+// store update data to database
+Route::put('/product/update/{id}', [ProductWebController::class, 'update'])->name('proEdit');
+// detele data product from database
+Route::delete('/product/delete/{id}', [ProductWebController::class, 'delete'])->name('proDestory');
 
-// detele data
-Route::delete('/product/delete/{id}', [ProductWebController::class, 'delete']);
+// group of staff route
+// index page
+Route::get('/staffs', [StaffWebController::class, 'index'])->name('staffs');
+// group of user route
+// index page
+Route::get('/users',[UserWebController::class, 'index'])->name('users');
 
-// staff Route 
-Route::get('/staffs', [StaffWebController::class, 'index'])->name('admin.staffs');
-// User Route
-Route::get('/users',[UserWebController::class, 'index'])->name('admin.users');
+
+// index page
+Route::get('/order',function(){
+    return view('');
+});

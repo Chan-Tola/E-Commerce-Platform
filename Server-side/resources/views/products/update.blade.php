@@ -1,5 +1,6 @@
 @extends('components.header')
 @section('title', 'Update Form')
+
 <body class="bg-gray-50">
     <div class="flex min-h-screen">
         @include('components.sidebar')
@@ -8,7 +9,7 @@
             @include('components.navbar')
             <!-- Content Area -->
             <main class="flex-1 overflow-y-auto p-6">
-                <form action="/product/update/{{ $product->id }}"
+                <form action="{{ route('proEdit', $product->id) }}"
                     class="max-w-xl mx-auto p-6 bg-white shadow-lg rounded-2xl space-y-4" method="POST"
                     enctype="multipart/form-data">
                     @csrf
