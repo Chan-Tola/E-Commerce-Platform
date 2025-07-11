@@ -10,6 +10,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
     const TABLENAME = 'users';
+    protected $table = self::TABLENAME;
     const ID = 'id';
     const USERNAME = 'name';
     const USEREMAIL = 'email';
@@ -22,7 +23,7 @@ class User extends Authenticatable
     protected $fillable =
     [
         self::USERNAME,
-        self::USEREMAIL, 
+        self::USEREMAIL,
         self::USERPASSWORD,
         self::USERCONTACT,
         self::USEREADDRESS,

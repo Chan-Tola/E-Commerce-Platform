@@ -6,14 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $table = 'tbproduct'; // your table name
-
+    // your table name
+    const TABLENAME = 'tbproduct';
+    const ID = 'id';
+    const NAME = 'name';
+    const PRICE = 'price';
+    const QUANTITY = 'quantity';
+    const STATUS = 'status';
+    const IMAGE = 'image';
+    const SELL_DATE = 'sell_date';
+    protected $table = self::TABLENAME;
     protected $fillable = [
-        'name',
-        'price',
-        'quantity',
-        'status',
-        'image',
-        'sell_date',
+        self::NAME,
+        self::PRICE,
+        self::QUANTITY,
+        self::STATUS,
+        self::IMAGE,
+        self::SELL_DATE,
     ];
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -10,18 +11,18 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('tbproduct', function (Blueprint $table) {
+        Schema::create(Product::TABLENAME, function (Blueprint $table) {
             $table->id(); // This creates an auto-incrementing BIGINT (unsigned) primary key named 'id'
-            $table->string('name'); // Equivalent to VARCHAR(255) NOT NULL
-            $table->decimal('price', 10, 2); // Equivalent to DECIMAL(10, 2) NOT NULL
-            $table->integer('quantity')->default(0); // Equivalent to INT NOT NULL DEFAULT 0
-            $table->enum('status', ['normal', 'popular'])->default('normal'); // Equivalent to ENUM NOT NULL DEFAULT 'normal'
-            $table->string('image')->nullable(); // Equivalent to VARCHAR(255) NULL
-            $table->date('sell_date'); // Equivalent to DATE NOT NULL
+            $table->string(Product::NAME); // Equivalent to VARCHAR(255) NOT NULL
+            $table->decimal(Product::PRICE, 10, 2); // Equivalent to DECIMAL(10, 2) NOT NULL
+            $table->integer(Product::QUANTITY)->default(0); // Equivalent to INT NOT NULL DEFAULT 0
+            $table->enum(Product::STATUS, ['normal', 'popular'])->default('normal'); // Equivalent to ENUM NOT NULL DEFAULT 'normal'
+            $table->string(Product::IMAGE)->nullable(); // Equivalent to VARCHAR(255) NULL
+            $table->date(Product::SELL_DATE); // Equivalent to DATE NOT NULL
 
             // For created_at and updated_at to match your SQL defaults:
-            $table->timestamp('created_at')->useCurrent(); // Sets default to CURRENT_TIMESTAMP
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate(); // Sets default to CURRENT_TIMESTAMP and updates on row modification
+            $table->timestamp(Product::CREATED_AT)->useCurrent(); // Sets default to CURRENT_TIMESTAMP
+            $table->timestamp(Product::UPDATED_AT)->useCurrent()->useCurrentOnUpdate(); // Sets default to CURRENT_TIMESTAMP and updates on row modification
         });
     }
 

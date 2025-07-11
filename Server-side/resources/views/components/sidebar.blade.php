@@ -11,27 +11,51 @@
     </div>
 
     <nav class="p-4 top-14 fixed space-y-1 mt-3">
-        <a href="{{ route('index') }}"
-            class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200">
-            <i class="fas fa-box  text-primary-600  mr-3 text-lg"></i>
-            <span class="font-medium">View Products</span>
-        </a>
-        <a href="{{ route('staffs') }}"
-            class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200">
-            <i class="fa-solid fa-user text-primary-600  mr-3 text-lg"></i>
-            <span class="font-medium">View Staffs</span>
-        </a>
+        <div x-data="{ open: false }" class="relative inline-block text-left">
+            <button @click="open = !open" type="button"
+                class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer"
+                aria-haspopup="true" :aria-expanded="open.toString()">
+                <i class="fas fa-box text-primary-600 mr-3 text-lg"></i>
+                <span class="font-medium">Products</span>
+                <svg class="ml-2 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            {{-- drop down --}}
+            <div x-show="open" @click.away="open = false" x-transition
+                class="mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-20"
+                style="display: none;">
+                <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
+                    <a href="{{ route('index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        role="menuitem">View Products</a>
+                    <a href="{{ route('productdetail.index') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Product
+                        Detail</a>
+                </div>
+            </div>
+        </div>
 
-        <a href="{{ route('users') }}"
-            class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200">
+
+
+        <button onclick="window.location='{{ route('staffs') }}'"
+            class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer w-full text-left">
+            <i class="fa-solid fa-user text-primary-600 mr-3 text-lg"></i>
+            <span class="font-medium">View Staffs</span>
+        </button>
+
+        <button onclick="window.location='{{ route('users.index') }}'"
+            class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer w-full text-left">
             <i class="fa-solid fa-users text-primary-600 mr-3 text-lg"></i>
             <span class="font-medium">View Users</span>
-        </a>
-        <a href="{{ route('users') }}"
-            class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200">
+        </button>
+
+        <button onclick="window.location='{{ route('orders') }}'"
+            class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer w-full text-left">
             <i class="fa-solid fa-users text-primary-600 mr-3 text-lg"></i>
             <span class="font-medium">Order</span>
-        </a>
+        </button>
+
 
         {{-- <a href="#" class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200">
             <i class="fas fa-cog text-primary-600 mr-3 text-lg"></i>
@@ -54,3 +78,4 @@
         </div>
     </div>
 </aside>
+<script src="//unpkg.com/alpinejs" defer></script>

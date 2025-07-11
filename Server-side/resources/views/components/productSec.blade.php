@@ -10,7 +10,7 @@
         </div>
         <button type="button"
             class="text-white cursor-pointer text-center bg-blue-700 hover:bg-blue-800 rounded-lg font-semibold text-md px-5 py-2.5 me-2 mb-2">
-            <a href="{{ route('proCreate') }}">
+            <a href="{{ route('product.create') }}">
                 Add New Product
                 <i class="fa-solid fa-plus px-3"></i>
             </a>
@@ -79,7 +79,7 @@
                             <div class="flex justify-end space-x-2">
                                 {{-- button update --}}
                                 <button class="p-2 rounded-lg hover:bg-gray-100 text-gray-600">
-                                    <a href="{{ route('proUpdate', $product->id) }}"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('product.edit', $product->id) }}"><i class="fas fa-edit"></i></a>
                                 </button>
                                 {{-- button delete --}}
                                 <div x-data="{ showDelete: false }">

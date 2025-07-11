@@ -3,5 +3,4 @@
 @section('productContent')
     @include('components.productSec')
 @endsection
-
 @section('title', 'Homepage')

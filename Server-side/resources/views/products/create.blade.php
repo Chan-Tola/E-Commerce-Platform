@@ -9,7 +9,7 @@
             @include('components.navbar')
             <!-- Content Area -->
             <main class="flex-1 overflow-y-auto p-6">
-                <form action="{{ route('proStore') }}"
+                <form action="{{ route('product.store') }}"
                     class="max-w-xl mx-auto p-6 bg-white shadow-lg rounded-2xl space-y-4" method="POST"
                     enctype="multipart/form-data">
                     @csrf

@@ -18,7 +18,7 @@ class ProductWebController extends Controller
         $totalProducts = Product::count();
         $totalStaffs = Staff::count();
         $totalUsers = User::count();
-        return view('products.index', compact('products','totalProducts', 'totalStaffs', 'totalUsers'));
+        return view('products.index', compact('products', 'totalProducts', 'totalStaffs', 'totalUsers'));
     }
     // fn show fm for add new Prodcut
     public function create()
@@ -31,14 +31,14 @@ class ProductWebController extends Controller
     {
         // Validate the input data to check it is have data or check any errors
         $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'quantity' => 'required|integer|min:0',
-            'status' => 'nullable|string|max:50',
-            'status' => 'nullable|string|max:50',
-            'sell_date' => 'nullable|date',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            Product::NAME => 'required|string|max:255',
+            Product::PRICE => 'required|numeric|min:0',
+            Product::QUANTITY => 'required|integer|min:0',
+            Product::STATUS => 'nullable|string|max:50',
+            Product::SELL_DATE => 'nullable|date',
+            Product::IMAGE => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
+
 
         // ✅ Image handling
         if ($request->hasFile('image')) {
@@ -50,19 +50,19 @@ class ProductWebController extends Controller
 
         //save to database
         Product::create([
-            'name' => $request->name,
-            'price' => $request->price,
-            'quantity' => $request->quantity,
-            'status' => $request->status ?? 'normal', // Default value if null
-            'sell_date' => $request->sell_date,
-            'image' => $imagePath,
+            Product::NAME   => $request->name,
+            Product::PRICE  => $request->price,
+            Product::QUANTITY   => $request->quantity,
+            Product::STATUS  => $request->status ?? 'normal', // Default value if null
+            Product::SELL_DATE => $request->sell_date,
+            Product::IMAGE => $imagePath,
         ]);
- 
+
         return redirect('/product/create')->with('success', 'Created');
     }
 
     // Show the edit form
-    public function edit($id) 
+    public function edit($id)
     {
         $product = Product::find($id);
         return view('products.update', compact('product'));
@@ -72,16 +72,16 @@ class ProductWebController extends Controller
     {
         $product = Product::findOrFail($id);
         $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'quantity' => 'required|integer|min:0',
-            'status' => 'nullable|string|max:50',
-            'sell_date' => 'nullable|date',
+            Product::NAME => 'required|string|max:255',
+            Product::PRICE => 'required|numeric|min:0',
+            Product::QUANTITY => 'required|integer|min:0',
+            Product::STATUS => 'nullable|string',
+            Product::SELL_DATE => 'required|date',
+            Product::IMAGE => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Add image validation
         ]);
-
         // Image handling ()
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
+        if ($request->hasFile(Product::IMAGE)) {
+            $image = $request->file(Product::IMAGE);
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('uploads'), $imageName);
             $imagePath = 'uploads/' . $imageName;
@@ -93,7 +93,7 @@ class ProductWebController extends Controller
         $product->name = $request->name;
         $product->price = $request->price;
         $product->quantity = $request->quantity;
-        $product->status = $request->has('status') ? $request->status : 0;
+        $product->status = $request->has(Product::STATUS) ? $request->status : 0;
         $product->sell_date = $request->sell_date;
 
         $product->save();
@@ -106,4 +106,4 @@ class ProductWebController extends Controller
         Product::find($id)->delete();
         return response()->json(['success' => true, 'message' => 'Product deleted successfully!']);
     }
-} 
+}
