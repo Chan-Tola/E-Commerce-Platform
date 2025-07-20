@@ -100,38 +100,16 @@
         </div>
     </div>
 </body>
-
 @if (Session::has('success'))
-    <script>
-        //Without DOMContentLoaded, your script could run before SweetAlert2 library loads, so Swal would be undefined.
-        //Wait for page to load, then show alert. This avoids errors and makes sure your alert always works.
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: "Success!",
-                text: "{{ Session::get('success') }}",
-                icon: "success"
-            });
-        });
-    </script>
+    <x-sweet-alert type="success" :message="session('success')" />
 @endif
-
-
 @if ($errors->any())
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-            });
-        })
-    </script>
+    < x-sweet-alert type= "Oops..." :message="Something went wrong!" />
 @endif
 <script>
     function handleImageChange(event) {
         const file = event.target.files[0];
         const previewImag = document.getElementById('thumbnailPreview');
-
         if (file) {
             const reader = new FileReader();
 

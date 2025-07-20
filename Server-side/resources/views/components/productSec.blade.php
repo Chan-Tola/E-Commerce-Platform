@@ -16,7 +16,7 @@
             </a>
         </button>
     </div>
-
+    {{-- <x-table :headers="['id', 'name', 'price', 'sell_date']" /> --}}
     <!-- Products Table -->
     <div class="overflow-x-auto">
         <table class="w-full text-sm">

@@ -35,9 +35,6 @@
                 </div>
             </div>
         </div>
-
-
-
         <button onclick="window.location='{{ route('staffs') }}'"
             class="sidebar-link flex items-center px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer w-full text-left">
             <i class="fa-solid fa-user text-primary-600 mr-3 text-lg"></i>

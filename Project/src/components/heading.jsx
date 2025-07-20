@@ -12,12 +12,13 @@ import { BsBag } from "react-icons/bs";
 import { MdClear } from "react-icons/md";
 import adidasLogo from "../assets/Images/adidasLogo.png";
 import { useState } from "react";
+import { Carts, Logins } from "./index";
 
 // Array of links for navigation
 const links = ["men", "women", "Kid", "sale", "new & trendings"];
 
 const Heading = () => {
-  // State to store input value for search  
+  // State to store input value for search
   const [input, setInput] = useState("");
 
   // State to toggle the menu for small screens
@@ -25,6 +26,9 @@ const Heading = () => {
 
   // State to toggle the search bar for small screens
   const [toggleSearch, setToggleSearch] = useState(false);
+
+  // state to modal show
+  const [modal, setModal] = useState(false);
 
   // Updates the input value as user types in the search bar
   function handleInputChange(e) {
@@ -70,8 +74,8 @@ const Heading = () => {
 
           {/* Icons for small screens */}
           <ul className="md:hidden flex space-x-4 text-black cursor-pointer">
-            <Link>
-              <FaRegUser /> {/* User profile icon */}
+            <Link to="register">
+              <FaRegUser />
             </Link>
             <button onClick={handleToggleSearch}>
               <FaSearch /> {/* Search icon */}
@@ -193,15 +197,11 @@ const Heading = () => {
                   onClick={handleMenu}
                   className="flex space-x-4 text-black cursor-pointer"
                 >
-                  <Link>
-                    <FaRegUser />
-                  </Link>
-                  <Link>
+                  <Logins />
+                  <Link to="/">
                     <FaRegHeart />
                   </Link>
-                  <Link to="ProductDetail">
-                    <BsBag />
-                  </Link>
+                  <Carts />
                 </ul>
               </form>
             </section>

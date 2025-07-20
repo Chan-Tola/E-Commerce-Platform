@@ -100,6 +100,12 @@
         </section>
     </main>
     <script src="{{ asset('js/custome.js') }}"></script>
+    @if (session('alert_message'))
+        <x-sweet-alert :type="session('alert_type', 'success')" :message="session('alert_message')" :title="" />
+    @endif
+    @if ($errors->any())
+        <x-sweet-alert type= "Oops..." :message="Something went wrong!" />
+    @endif
     <script>
         // JavaScript functions to show/hide modal
         function showModal() {
@@ -109,7 +115,6 @@
         function closeModal() {
             document.getElementById('createStatusModal').classList.add('hidden');
         }
-
         // Close modal when clicking outside
         document.getElementById('createStatusModal').addEventListener('click', function(e) {
             if (e.target === this) {

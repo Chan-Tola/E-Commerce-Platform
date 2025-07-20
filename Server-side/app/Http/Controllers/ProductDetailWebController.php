@@ -18,7 +18,7 @@ class ProductDetailWebController extends Controller
         $totalProducts = Product::count();
         $totalStaffs = Staff::count();
         $totalUsers = User::count();
-        $productDetails = ProductDetail::with('product')->get();
+        $productDetails = ProductDetail::with('product')->get();    
         // dd($productDetails);
         return view('products.product_details.index', compact('totalProducts', 'totalStaffs', 'totalUsers', 'productDetails'));
     }
@@ -48,7 +48,11 @@ class ProductDetailWebController extends Controller
             ProductDetail::UNITPRICE => $request->input(ProductDetail::UNITPRICE),
             ProductDetail::ADMIN_NOTES => $request->input(ProductDetail::ADMIN_NOTES),
         ]);
-        return redirect()->back()->with('success', '✅ Product detail created successfully.');
+        return redirect()->back()->with([
+            'alert_type' => 'success',
+            'alert_message' => 'Product detail created successfully!',
+            'alert_title' => 'success',
+        ]);
     }
 
     /**
@@ -79,7 +83,11 @@ class ProductDetailWebController extends Controller
         ]);
         $updated = ProductDetail::findOrFail($id);
         $updated->update($validate);
-        return redirect()->back()->with('success', '✅ Product detail created successfully.');
+        return redirect()->back()->with([
+            'alert_type' => 'success',
+            'alert_message' => 'Product detail updated successfully!',
+            'alert_title' => 'success',
+        ]);
     }
 
     /**
@@ -94,6 +102,10 @@ class ProductDetailWebController extends Controller
     {
         $deleted = ProductDetail::findOrFail($id);
         $deleted->delete();
-        return redirect()->back()->with('success', '✅ Product detail created successfully.');
+        return redirect()->back()->with([
+            'alert_type' => 'info',
+            'alert_message' => 'Product detail deleted successfully!',
+            'alert_title' => 'success',
+        ]);
     }
 }
