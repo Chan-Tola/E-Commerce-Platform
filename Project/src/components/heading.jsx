@@ -12,7 +12,8 @@ import { BsBag } from "react-icons/bs";
 import { MdClear } from "react-icons/md";
 import adidasLogo from "../assets/Images/adidasLogo.png";
 import { useState } from "react";
-import { Carts, Logins } from "./index";
+import Logins from "./Logins";
+import Carts from "./Cart/Carts";
 
 // Array of links for navigation
 const links = ["men", "women", "Kid", "sale", "new & trendings"];

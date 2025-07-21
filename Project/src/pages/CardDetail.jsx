@@ -1,22 +1,37 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useCart } from "../hooks/useCart";
 
 const CardDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const { cart, addToCart } = useCart();
+
+  // get product by id
   useEffect(() => {
     axios
       .get(`http://127.0.0.1:8000/api/product/${id}`)
       .then((res) => {
-        setProduct(res.data.data); // Make sure your API returns { data: { ... } }
+        setProduct(res.data.data); // Ensure your backend returns data inside { data: { ... } }
+
+        // ✅ Optional: compare id from backend with URL
+        if (res.data.data.id != id) {
+          console.warn("ID mismatch!");
+        }
       })
       .catch((err) => {
         console.error("Error fetching product:", err);
       });
   }, [id]);
+
   if (!product) return <div className="text-center mt-10">Loading...</div>;
+  // Destructure safely
   const { name, price, image } = product;
+
+  // check that product add to cart or not 
+  const isInCart = cart.some((item) => item.id === product.id);
+
   return (
     <div className="w-full px-4 md:px-0 py-16 ">
       <div className="flex flex-col md:flex-row justify-evenly items-center w-full gap-8 md:gap-16">
@@ -37,23 +52,17 @@ const CardDetail = () => {
           <p className="text-lg sm:text-xl font-semibold text-gray-700 mt-2">
             {price}
           </p>
-          {/* Size Selection */}
-          {/* <div className="mt-6">
-            <h3 className="text-lg font-semibold text-gray-900">Select Size</h3>
-            <div className="flex gap-3 mt-2">
-              {size.map((s) => (
-                <button
-                  key={s}
-                  className="border border-gray-400 px-4 py-2 text-sm font-medium rounded-md hover:bg-gray-200 transition"
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
-          </div> */}
           {/* Add to Cart Button */}
-          <button className="mt-4 bg-black text-white px-6 py-3 text-lg font-medium rounded-md hover:bg-gray-800 transition">
-            Add to Cart
+          <button
+            onClick={() => !isInCart && addToCart(product)}
+            disabled={isInCart}
+            className={`mt-4 bg-black uppercase  text-white px-6 py-3 text-lg font-medium rounded-md hover:bg-gray-800 transition ${
+              isInCart
+                ? "bg-gray-500 cursor-not-allowed text-white"
+                : "bg-black text-white hover:bg-gray-800"
+            }`}
+          >
+            {isInCart ? "added" : "add to cart"}
           </button>
         </div>
       </div>
@@ -62,5 +71,3 @@ const CardDetail = () => {
 };
 
 export default CardDetail;
-
-

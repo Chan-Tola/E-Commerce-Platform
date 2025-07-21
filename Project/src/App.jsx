@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import RootLayout from "./layouts/RootLayout";
-import { HomePage, CardDetail, Register } from "./pages/Index";
+import { HomePage, CardDetail, Register, CartPage } from "./pages/Index";
 const Routers = createBrowserRouter([
   {
     path: "/us",
@@ -40,6 +40,14 @@ const Routers = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "cast",
+        element: <CartPage />,
+      },
+      {
+        path: "checkout",
+        element: <h1>Checkout page</h1>,
       },
     ],
   },
