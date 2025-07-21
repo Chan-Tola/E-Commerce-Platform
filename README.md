@@ -25,5 +25,5 @@ A modern e-commerce application for seamless online shopping, built with a robus
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/e-commerce-platform.git
-cd e-commerce-platform
+git clone https://github.com/Chan-Tola/E-com-react.git
+cd E-com-react
