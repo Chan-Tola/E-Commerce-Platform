@@ -27,3 +27,7 @@ A modern e-commerce application for seamless online shopping, built with a robus
 ```bash
 git clone https://github.com/Chan-Tola/E-com-react.git
 cd E-com-react
+```
+### 2. Client : run npm install
+### 3. Server-side : run npm install for tailwind css and composer install for laravel backend.
+
