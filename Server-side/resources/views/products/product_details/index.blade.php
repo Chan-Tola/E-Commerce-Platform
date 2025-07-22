@@ -101,7 +101,7 @@
     </main>
     <script src="{{ asset('js/custome.js') }}"></script>
     @if (session('alert_message'))
-        <x-sweet-alert :type="session('alert_type', 'success')" :message="session('alert_message')" :title="" />
+        <x-sweet-alert :type="session('alert_type', 'success')" :message="session('alert_message')" :title="null" />
     @endif
     @if ($errors->any())
         <x-sweet-alert type= "Oops..." :message="Something went wrong!" />
