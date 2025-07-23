@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Input, Checkbox } from "@material-tailwind/react";
 const LoginModal = ({ onLogin }) => {
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
@@ -23,38 +23,38 @@ const LoginModal = ({ onLogin }) => {
         onSubmit={step === 1 ? handleContinue : handleSubmite}
       >
         {step === 1 && (
-          <div className="relative text-black w-full">
-            <input
+          <section className="relative text-black w-full">
+            {/* <Typography className="-mb-2" variant="h6">
+              Your Email
+            </Typography> */}
+            <Input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="peer w-full bg-transparent placeholder-transparent text-slate-700 text-sm border border-black rounded-md px-3 py-4 transition duration-300 ease-in-out focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-              placeholder="Email"
+              label="Email"
+              size="lg"
             />
-            <label className="uppercase absolute bg-white px-1 left-2.5 top-2.5 text-slate-400 text-sm transition-all transform origin-left cursor-text peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-slate-400 peer-focus:scale-90">
-              Email Address
-            </label>
-          </div>
+          </section>
         )}
         {step === 2 && (
-          <div className="relative text-black w-full">
-            <input
+          <section className="relative text-black w-full">
+            <Input
+              label="Password"
               type="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="peer w-full bg-transparent placeholder-transparent text-slate-700 text-sm border border-black rounded-md px-3 py-4 transition duration-300 ease-in-out focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-              placeholder="Password"
+              size="lg"
             />
-            <label className="uppercase absolute bg-white px-1 left-2.5 top-2.5 text-slate-400 text-sm transition-all transform origin-left cursor-text peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-placeholder-shown:text-slate-400 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-slate-400 peer-focus:scale-90">
-              Password
-            </label>
-          </div>
+            <div className="-ml-2.5 mt-2">
+              <Checkbox label="Remember Me" />
+            </div>
+          </section>
         )}
         <button
           type="submit"
-          className="relative w-[200px] bottom-0 flex justify-center items-center gap-2 border border-[#000] rounded-xl text-[#FFF] font-black bg-[#000] uppercase px-8 py-4 z-10 overflow-hidden ease-in-out duration-700 group hover:text-[#000] hover:bg-[#FFF] active:scale-95 active:duration-0 focus:bg-[#FFF] focus:text-[#000] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFF] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700"
+          className="relative h-[40px] w-[200px] bottom-0 flex justify-center items-center gap-2 border border-[#000] rounded-xl text-[#FFF] font-black bg-[#000] uppercase px-8 py-4 z-10 overflow-hidden ease-in-out duration-700 group hover:text-[#000] hover:bg-[#FFF] active:scale-95 active:duration-0 focus:bg-[#FFF] focus:text-[#000] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFF] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700"
         >
           <span className="truncate eaes-in-out duration-300 group-active:-translate-x-96 group-focus:translate-x-96">
             {step === 1 ? "Continue" : "Login"}
@@ -62,7 +62,7 @@ const LoginModal = ({ onLogin }) => {
           {/* place where for loading */}
           <div className="absolute flex flex-row justify-center items-center gap-2 -translate-x-96 eaes-in-out duration-300 group-active:translate-x-0 group-focus:translate-x-0">
             <div className="animate-spin size-4 border-2 border-[#000] border-t-transparent rounded-full" />
-            Processing...
+            loading...
           </div>
           <svg
             className="fill-[#FFF] group-hover:fill-[#000] group-hover:-translate-x-0 group-active:translate-x-96 group-active:duration-0 group-focus:translate-x-96 group-focus:fill-[#000] ease-in-out duration-700"

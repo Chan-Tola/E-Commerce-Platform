@@ -195,7 +195,7 @@ const Heading = () => {
                 {/* Action Icons */}
                 <ul
                   onClick={handleMenu}
-                  className="flex space-x-4 text-black cursor-pointer"
+                  className="flex space-x-4 items-center text-md justify-center  text-black cursor-pointer"
                 >
                   {/* Login */}
                   <AuthForm />

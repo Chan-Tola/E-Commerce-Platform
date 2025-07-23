@@ -19,6 +19,7 @@ const AuthForm = () => {
   // create message to show that success or not
   const [message, setMessage] = useState("");
   // function open
+  // const handleOpen = () => setOpen((cur) => !cur);
   const handleOpen = () => {
     setOpen((prev) => !prev);
     setFormType("login"); // Reset to login every time modal opens
@@ -58,7 +59,21 @@ const AuthForm = () => {
         <DialogHeader className="justify-between">
           <div>
             <Typography className="text-3xl font-bold uppercase">
-              {formType === "login" ? "Log In" : "Register"}
+              {formType === "login" ? (
+                <>
+                  <p>Log In</p>
+                  <p className="text-slate-500 text-xs lowercase font-light">
+                    Welcome Back.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p>Sign Up</p>
+                  <p className="text-slate-500 text-xs font-light lowercase">
+                    Nice to meet you! Enter your details to register.
+                  </p>
+                </>
+              )}
             </Typography>
           </div>
           <MdClear onClick={handleOpen} className="cursor-pointer" />

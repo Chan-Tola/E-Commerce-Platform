@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BsBag } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
-
+import { Badge, Button } from "@material-tailwind/react";
 const Carts = () => {
   const [showTable, setShowTable] = useState(false);
   const { cart } = useCart();
@@ -30,13 +30,12 @@ const Carts = () => {
   }
   return (
     <>
-      <section className="relative ">
-        <Link to="cast" className="text-black  transition">
-          <BsBag />
+      <section>
+        <Link to="cast" className="text-black transition">
+          <Badge className="bg-blue-500 -top-1 -right-1" content={cart.length}>
+            <BsBag />
+          </Badge>
         </Link>
-        <span className="absolute translate-x-2 -translate-y-8 w-5 h-5 rounded-full bg-blue-700 text-white font-bold text-sm flex items-center justify-center">
-          {cart.length}
-        </span>
       </section>
     </>
   );
