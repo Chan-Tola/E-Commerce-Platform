@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import RootLayout from "./layouts/RootLayout";
-import { HomePage, CardDetail, Register, CartPage } from "./pages/Index";
+import { HomePage, CardDetail, CartPage } from "./pages/Index";
 const Routers = createBrowserRouter([
   {
     path: "/us",
@@ -35,11 +35,6 @@ const Routers = createBrowserRouter([
       {
         path: ":id",
         element: <CardDetail />,
-      },
-      // register path
-      {
-        path: "register",
-        element: <Register />,
       },
       {
         path: "cast",

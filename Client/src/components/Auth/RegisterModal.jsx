@@ -1,6 +1,5 @@
-import axios from "axios";
 import { useState } from "react";
-const Register = () => {
+const RegisterModal = ({ onRegister }) => {
   // 1. Set up component state
   const [formData, setFromData] = useState({
     name: "",
@@ -9,8 +8,7 @@ const Register = () => {
     phone: "",
     address: "",
   });
-  // create message to show that success or not
-  const [message, setMessage] = useState("");
+
 
   // 2. Create input change handler
   const handleChange = (e) => {
@@ -22,50 +20,10 @@ const Register = () => {
   //3. Create form submit handler
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      // api [http://localhost:8000/api/register]
-      const response = await axios.post(
-        "http://localhost:8000/api/register",
-        formData
-      );
-      //   setMessage("✅ Registration successful!");
-      console.log(response.data);
-
-      // ✅ Clear the form
-      setFromData({
-        name: "",
-        email: "",
-        password: "",
-        phone: "",
-        address: "",
-      });
-    } catch {
-      if (error.response && error.response.data) {
-        const errors = Object.values(error.response.data).flat().join(", ");
-        setMessage("❌ Error: " + errors);
-      } else {
-        setMessage("❌ An unknown error occurred.");
-      }
-    }
+    onRegister(formData);
   };
-
-  //   4. Add form JSX with Tailwind styles
   return (
-    <div className="max-w-md mx-auto m-32 p-6 bg-white rounded-lg border border-black shadow-lg shadow-gray-400/30">
-      <h1 className="text-3xl font-bold mb-6 text-center text-gray-900">
-        Register
-      </h1>
-      {/* show message
-      {message && (
-        <div
-          className={`mb-4 p-4 rounded-lg text-sm text-white text-center font-semibold
-      ${message.startsWith("✅") ? "bg-green-600" : "bg-red-600"}
-    `}
-        >
-          {message}
-        </div>
-      )} */}
-
+    <>
       <form onSubmit={handleSubmit}>
         {/* Name */}
         <label
@@ -161,9 +119,9 @@ const Register = () => {
         >
           Register
         </button>
-        <button>Login</button>
       </form>
-    </div>
+    </>
   );
 };
-export default Register;
+
+export default RegisterModal;

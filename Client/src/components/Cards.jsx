@@ -4,8 +4,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
-// import { products } from "../Data/CardData";
-import axios from "axios";
+// API serverice
+import { getAllProducts } from "../services/ProductService";
 
 const Cards = () => {
   const sliderRef = useRef(null);
@@ -41,14 +41,15 @@ const Cards = () => {
   };
 
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/api/products")
-      .then((response) => {
-        setProducts(response.data.data);
-      })
-      .catch((e) => {
-        console.log("API error :", e);
-      });
+    const fetchProducts = async () => {
+      try {
+        const data = await getAllProducts();
+        setProducts(data);
+      } catch (err) {
+        console.log("Error Fetching products :", err);
+      }
+    };
+    fetchProducts();
   }, []);
   return (
     <div className="relative w-full px-4 ">

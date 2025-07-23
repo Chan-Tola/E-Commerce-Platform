@@ -1,35 +1,37 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import { useCart } from "../hooks/useCart";
+// API serverice
+import { getPBID } from "../services/ProductService";
 
 const CardDetail = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // get product ID from URL
   const [product, setProduct] = useState(null);
-  const { cart, addToCart } = useCart();
+  const { cart, addToCart } = useCart(); // using cart context
 
   // get product by id
   useEffect(() => {
-    axios
-      .get(`http://127.0.0.1:8000/api/product/${id}`)
-      .then((res) => {
-        setProduct(res.data.data); // Ensure your backend returns data inside { data: { ... } }
+    const fetchProduct = async () => {
+      try {
+        const data = await getPBID(id);
+        setProduct(data);
 
-        // ✅ Optional: compare id from backend with URL
-        if (res.data.data.id != id) {
-          console.warn("ID mismatch!");
+        if (data?.id != id) {
+          console.warn("⚠️ ID mismatch between URL and API data");
         }
-      })
-      .catch((err) => {
-        console.error("Error fetching product:", err);
-      });
+      } catch (err) {
+        console.error("❌ Error fetching product:", err);
+      }
+    };
+    // fetcchProduct
+    fetchProduct();
   }, [id]);
 
   if (!product) return <div className="text-center mt-10">Loading...</div>;
   // Destructure safely
   const { name, price, image } = product;
 
-  // check that product add to cart or not 
+  // check that product add to cart or not
   const isInCart = cart.some((item) => item.id === product.id);
 
   return (

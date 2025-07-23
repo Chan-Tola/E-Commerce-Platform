@@ -12,8 +12,7 @@ import { BsBag } from "react-icons/bs";
 import { MdClear } from "react-icons/md";
 import adidasLogo from "../assets/Images/adidasLogo.png";
 import { useState } from "react";
-import Logins from "./Logins";
-import Carts from "./Cart/Carts";
+import { AuthForm, Carts } from "./index";
 
 // Array of links for navigation
 const links = ["men", "women", "Kid", "sale", "new & trendings"];
@@ -198,10 +197,13 @@ const Heading = () => {
                   onClick={handleMenu}
                   className="flex space-x-4 text-black cursor-pointer"
                 >
-                  <Logins />
+                  {/* Login */}
+                  <AuthForm />
+                  {/* favo */}
                   <Link to="/">
                     <FaRegHeart />
                   </Link>
+                  {/* carts */}
                   <Carts />
                 </ul>
               </form>
