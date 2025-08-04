@@ -18,8 +18,7 @@ class ProductDetailWebController extends Controller
         $totalProducts = Product::count();
         $totalStaffs = Staff::count();
         $totalUsers = User::count();
-        $productDetails = ProductDetail::with('product')->get();    
-        // dd($productDetails);
+        $productDetails = ProductDetail::with('product')->get();
         return view('products.product_details.index', compact('totalProducts', 'totalStaffs', 'totalUsers', 'productDetails'));
     }
 

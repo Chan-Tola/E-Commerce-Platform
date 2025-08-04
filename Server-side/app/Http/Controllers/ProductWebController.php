@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Staff;
 use App\Models\User;
+use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 
 class ProductWebController extends Controller
@@ -30,7 +31,7 @@ class ProductWebController extends Controller
     public function store(Request $request)
     {
         // Validate the input data to check it is have data or check any errors
-        $request->validate([
+        $validate = $request->validate([
             Product::NAME => 'required|string|max:255',
             Product::PRICE => 'required|numeric|min:0',
             Product::QUANTITY => 'required|integer|min:0',
@@ -38,6 +39,8 @@ class ProductWebController extends Controller
             Product::SELL_DATE => 'nullable|date',
             Product::IMAGE => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
+
+        
 
 
         // ✅ Image handling
@@ -50,11 +53,11 @@ class ProductWebController extends Controller
 
         //save to database
         Product::create([
-            Product::NAME   => $request->name,
-            Product::PRICE  => $request->price,
-            Product::QUANTITY   => $request->quantity,
-            Product::STATUS  => $request->status ?? 'normal', // Default value if null
-            Product::SELL_DATE => $request->sell_date,
+            Product::NAME   => $validate[Product::NAME],
+            Product::PRICE  => $validate[Product::PRICE],
+            Product::QUANTITY   => $validate[Product::QUANTITY],
+            Product::STATUS  => $validate[Product::STATUS] ?? null, // Default value if null
+            Product::SELL_DATE => $validate[Product::SELL_DATE] ?? null,
             Product::IMAGE => $imagePath,
         ]);
 

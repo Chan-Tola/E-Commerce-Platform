@@ -1,18 +1,16 @@
 <?php
-
 use App\Http\Controllers\OrderWebController;
 use App\Http\Controllers\ProductDetailWebController;
 use App\Http\Controllers\ProductWebController;
 use App\Http\Controllers\StaffWebController;
 use App\Http\Controllers\UserWebController;
-use App\Http\Controllers\WebController;
+use App\Http\Controllers\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
 // Group of Product Route
 
 // index page
 Route::controller(ProductWebController::class)->group(function () {
-    Route::get('/', 'index')->name('index');
     Route::get('/product/create', 'create')->name('product.create');
     Route::post('/product/store', 'store')->name('product.store');
     Route::get('/product/{id}/edit', 'edit')->name('product.edit');
@@ -34,3 +32,14 @@ Route::get('/staffs', [StaffWebController::class, 'index'])->name('staffs');
 Route::get('/users', [UserWebController::class, 'index'])->name('users.index');
 Route::get('/users/create', [UserWebController::class, 'create'])->name('user.create');
 Route::get('/orders', [OrderWebController::class, 'index'])->name('orders');
+
+
+Route::controller(AuthenticationController::class)->group(function () {
+    Route::get('/login','loginForm')->name('login');
+    Route::post('/login','login')->name('loginSubmit');
+    Route::post('/logout','logout')->name('logout');
+});
+
+Route::middleware(['auth:staff'])->controller(ProductWebController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+});

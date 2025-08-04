@@ -105,6 +105,7 @@
 @if ($errors->any())
     <x-sweet-alert type= "Oops..." :message="Something went wrong!" />
 @endif
+{{-- code for show image change --}}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.image-input').forEach(input => {

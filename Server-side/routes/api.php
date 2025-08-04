@@ -12,8 +12,11 @@ Route::get('/user', function (Request $request) {
 // // http://localhost:8000/api/products
 // Your working API route
 Route::get('products', [ProductController::class, 'index']);
+
 // // http://localhost:8000/api/products/{id}
 Route::get('product/{id}', [ProductController::class, 'show']);
+
 // http://localhost:8000/api/register
 // route create user
+
 Route::post('/register', [AuthController::class, 'register']);

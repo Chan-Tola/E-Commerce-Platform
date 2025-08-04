@@ -65,8 +65,10 @@
                 <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full object-cover"
                     alt="Admin">
                 <div>
-                    {{-- <p class="font-medium text-gray-800">{{ $staffs->full_name }}</p> --}}
-                    {{-- <p class="text-xs text-primary-600">{{ $staffs->role }}</p> --}}
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit">Logout</button>
+                    </form>
                 </div>
             </div>
             <button class="text-primary-600 hover:text-gray-700">

@@ -12,7 +12,7 @@
             title: "{{ $title ?? ($type === 'success' ? 'Success!' : 'Oops...') }}",
             text: "{{ $message }}",
             timer: 1500,
-            width: 400,
+            width: 350,              // Make it narrower
             showConfirmButton: false,
             showClass: {
                 popup: `animate__animated animate__fadeInUp animate__faster`
