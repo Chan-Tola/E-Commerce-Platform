@@ -26,7 +26,7 @@ class AuthenticationController extends Controller
         if(Auth::guard('staff')->attempt($data)){
             return redirect()->route('index')->with([
                 'sweet-alert' => true,
-                'alert-message' => 'Welcome back!'
+                'alert-message' => 'Welcome back '.fullName(Auth::guard('staff')->user()),
             ]);
         }
         return redirect()->route('login')->with([
@@ -39,9 +39,9 @@ class AuthenticationController extends Controller
     public function logout(Request $request){
         Auth::guard('staff')->logout(); //Use staff guard
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
+//        $request->session()->invalidate();
+//        $request->session()->regenerateToken();
+//
         return  redirect()->route('login');
 
     }

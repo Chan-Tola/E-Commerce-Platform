@@ -1,8 +1,8 @@
 <!-- Modern Top Navbar -->
-<header class="bg-white shadow-sm z-0">
-    <div class="flex justify-between items-center p-4">
+<nav class="bg-white border-gray-900 border-b  z-0">
+    <div class="flex justify-between p-4  items-center ">
         <div class="flex items-center">
-            <h1 class="text-xl font-semibold text-gray-800">Admin Dashboard</h1>
+            <h1 class="text-xl capitalize font-semibold text-gray-800">   {{ Auth::guard('staff')->user()->role }} Dashboard</h1>
         </div>
 
         <div class="flex items-center space-x-4">
@@ -19,4 +19,4 @@
             </button>
         </div>
     </div>
-</header>
+</nav>

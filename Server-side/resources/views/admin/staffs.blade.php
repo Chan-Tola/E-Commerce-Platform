@@ -9,7 +9,7 @@
                     <h2 class="text-xl font-semibold text-gray-700">Staff List</h2>
                     <p class="text-sm text-gray-500 mt-1">Manage Staff details</p>
                 </div>
-                <a href=""
+                <a href="{{ route('staff.create') }}"
                     class="inline-block px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-700 transition">
                     + Add Staff
                 </a>
@@ -35,19 +35,19 @@
                                     {{-- <img src="{{ $member->profile_picture ?? 'https://via.placeholder.com/40x40?text=👤' }}"
                                         alt="{{ $member->full_name }}"
                                         class="w-10 h-10 rounded-full object-cover border border-gray-300"> --}}
-                                    <span class="font-medium">{{ $member->full_name }}</span>
+                                    <span class="font-medium">{{ fullName($member) }}</span>
                                 </td>
                                 <td class="px-6 py-4">{{ $member->email }}</td>
                                 <td class="px-6 py-4">
                                     <span
-                                        class="inline-block px-2 py-1 text-xs font-medium rounded 
+                                        class="inline-block px-2 py-1 text-xs font-medium rounded
                                 {{ $member->role === 'admin' ? 'bg-red-100 text-red-600' : ($member->role === 'HR' ? 'bg-amber-100 text-amber-600' : 'bg-green-100 text-green-600') }}">
                                         {{ ucfirst($member->role) }}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4">
                                     <span
-                                        class="inline-block px-2 py-1 text-xs font-medium rounded 
+                                        class="inline-block px-2 py-1 text-xs font-medium rounded
                                 {{ $member->status === 'active' ? 'bg-green-100 text-green-600' : ($member->status === 'on_leave' ? 'bg-yellow-100 text-yellow-600' : 'bg-gray-200 text-gray-600') }}">
                                         {{ ucfirst(str_replace('_', ' ', $member->status)) }}
                                     </span>

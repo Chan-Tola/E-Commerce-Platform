@@ -28,7 +28,11 @@ Route::controller(ProductDetailWebController::class)->group(function () {
     Route::delete('/productdetail/destroy/{id}', 'destroy')->name('productdetail.destory');
 });
 
-Route::get('/staffs', [StaffWebController::class, 'index'])->name('staffs');
+Route::controller(StaffWebController::class)->group(function () {
+    Route::get('/staffs', [StaffWebController::class, 'index'])->name('staffs');
+    Route::get('/staff/create', [StaffWebController::class, 'create'])->name('staff.create');
+    Route::post('/staff/store', [StaffWebController::class, 'store'])->name('staff.store');
+});
 Route::get('/users', [UserWebController::class, 'index'])->name('users.index');
 Route::get('/users/create', [UserWebController::class, 'create'])->name('user.create');
 Route::get('/orders', [OrderWebController::class, 'index'])->name('orders');

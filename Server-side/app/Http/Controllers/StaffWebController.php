@@ -18,4 +18,13 @@ class StaffWebController extends Controller
         $totalUsers = User::count();
         return view('admin.staffs',compact('staffs','totalProducts', 'totalStaffs', 'totalUsers'));
     }
+
+    public function create()
+    {
+        return view('admin.create');
+    }
+    public function store(Request $request)
+    {
+
+    }
 }

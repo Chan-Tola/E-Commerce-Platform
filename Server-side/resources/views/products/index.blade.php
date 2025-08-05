@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @extends('components.header')
 @section('productContent')
-    @include('components.productSec')
+    @include('products.components.product-table')
 @endsection
 @section('title', 'Homepage')
 

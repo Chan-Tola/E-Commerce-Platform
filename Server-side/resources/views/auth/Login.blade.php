@@ -158,7 +158,4 @@
         width: 100%;
     }
 </style>
-<script>
-    const loginUrl = "{{ route('loginSubmit') }}";
-</script>
 
