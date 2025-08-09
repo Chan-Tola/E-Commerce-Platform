@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title', 'Product Detail')
-{{-- yield--}}
+{{-- yield --}}
 @section('product-details')
     <main class="bg-gray-100 shadow-md rounded-lg p-2">
         <section class="flex items-center justify-between mb-4 mt-6">
@@ -124,5 +124,4 @@
             }
         });
     </script>
-
 @endsection

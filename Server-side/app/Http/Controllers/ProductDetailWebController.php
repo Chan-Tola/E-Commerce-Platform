@@ -47,11 +47,7 @@ class ProductDetailWebController extends Controller
             ProductDetail::UNITPRICE => $request->input(ProductDetail::UNITPRICE),
             ProductDetail::ADMIN_NOTES => $request->input(ProductDetail::ADMIN_NOTES),
         ]);
-        return redirect()->back()->with([
-            'alert_type' => 'success',
-            'alert_message' => 'Product detail created successfully!',
-            'alert_title' => 'success',
-        ]);
+        return redirect()->back()->with(['alert_message' => 'Product-detail created successfully!']);
     }
 
     /**

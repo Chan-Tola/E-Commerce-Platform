@@ -22,7 +22,7 @@ class StaffWebController extends Controller
     // show form for add new staff
     public function create()
     {
-        return view('admin.create');
+        return view('admin.staffs.create');
     }
     // fn for insert data into database
     public function store(Request $request) {}

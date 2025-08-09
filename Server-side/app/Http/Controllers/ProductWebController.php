@@ -60,7 +60,7 @@ class ProductWebController extends Controller
             Product::IMAGE => $imagePath,
         ]);
 
-        return redirect('/product/create')->with('success', 'Created');
+        return redirect('/product/create')->with('success', 'Prodcut created successfully!');
     }
 
     // Show the edit form

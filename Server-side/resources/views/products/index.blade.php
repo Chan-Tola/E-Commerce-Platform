@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Homepage')
+@section('title', 'Prodcuts')
 
 @section('product')
     <div class="bg-white shadow-xl rounded-lg overflow-hidden">
@@ -131,7 +131,7 @@
 @endsection
 
 {{-- check logint --}}
-@if (session('sweet-alert'))
+{{-- @if (session('sweet-alert'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const Toast = Swal.mixin({
@@ -152,11 +152,12 @@
 
         });
     </script>
+@endif --}}
+
+@if (Session::has('sweet-alert'))
+    <x-sweet-alert icon="success" :message="session('alert-message')" />
 @endif
 
-@if (Session::has('success'))
-    <x-sweet-alert type="success" :message="session('success')" />
-@endif
 {{-- push script --}}
 @push('btnDelete')
     {{-- Add this in your layout or at the bottom of index.blade.php --}}

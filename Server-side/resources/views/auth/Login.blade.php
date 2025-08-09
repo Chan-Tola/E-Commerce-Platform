@@ -1,9 +1,5 @@
 @extends('components.header')
-<!-- Load jQuery first -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-@section('title', 'Login Page')
+@section('title', 'Login')
 <main class="h-full flex bg-[#e8e8e8] flex-col gap-[5rem] justify-center items-center">
     <section>
         <p class="text-4xl font-bold uppercase text-center  mt-6 mb-4">
@@ -70,7 +66,6 @@
 
     </div>
 
-
     @if (session('sweet-alert'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
@@ -95,63 +90,5 @@
 </main>
 <script src="{{ asset('js/auth-login.js') }}"></script>
 <script src="{{ asset('js/formInput.js') }}"></script>
-<style>
-    .form {
-        --background: #d3d3d3;
-        --input-focus: #2d8cf0;
-        --font-color: #323232;
-        --font-color-sub: #666;
-        --bg-color: #fff;
-        --main-color: #323232;
-        padding: 20px;
-        background: var(--background);
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        gap: 20px;
-        border-radius: 5px;
-        border: 2px solid var(--main-color);
-        box-shadow: 4px 4px var(--main-color);
-    }
-
-    .form input {
-        border-radius: 5px;
-        border: 2px solid var(--main-color);
-        background-color: var(--bg-color);
-        box-shadow: 4px 4px var(--main-color);
-        color: var(--font-color);
-        outline: none;
-    }
-
-    .oauthButton {
-        border: 2px solid var(--main-color);
-        background-color: var(--bg-color);
-        box-shadow: 4px 4px var(--main-color);
-        color: var(--font-color);
-        outline: none;
-        z-index: 1;
-    }
-
-    .oauthButton::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 0;
-        background-color: #212121;
-        z-index: -1;
-        -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-        box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-        transition: all 250ms;
-    }
-
-    .oauthButton:hover {
-        color: #e8e8e8;
-    }
-
-    .oauthButton:hover::before {
-        width: 100%;
-    }
-</style>
+{{-- In your Blade file --}}
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
