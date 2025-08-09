@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('components.header')
 @section('title', 'Staff')
 @section('staffs')
     <div class="p-6">
@@ -9,7 +8,7 @@
                     <h2 class="text-xl font-semibold text-gray-700">Staff List</h2>
                     <p class="text-sm text-gray-500 mt-1">Manage Staff details</p>
                 </div>
-                <a href="{{ route('staff.create') }}"
+                <a href="{{ route('staff.form') }}" data-tile="Resgister"
                     class="inline-block px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-700 transition">
                     + Add Staff
                 </a>
@@ -54,8 +53,9 @@
                                 </td>
                                 <td class="px-6 py-4 text-right space-x-2">
                                     {{-- {{ route('staff.edit', $member->id) }} --}}
-                                    <a href="#" class="text-indigo-500 hover:text-indigo-700">
-                                        <i class="fas fa-edit"></i>
+                                    <a href="{{ route('staff.edit', $member->id) }}"
+                                        class="text-indigo-500 hover:text-indigo-700">
+                                        {!! icon_edit() !!}
                                     </a>
                                     {{-- {{ route('staff.destroy', $member->id) }} --}}
                                     <form action="#" method="POST" class="inline-block">
@@ -63,7 +63,7 @@
                                         @method('DELETE')
                                         <button type="submit" onclick="return confirm('Are you sure?')"
                                             class="text-red-500 hover:text-red-700">
-                                            <i class="fas fa-trash-alt"></i>
+                                            {!! icon_delete() !!}
                                         </button>
                                     </form>
                                 </td>

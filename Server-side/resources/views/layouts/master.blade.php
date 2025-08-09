@@ -1,7 +1,11 @@
-@extends('components.header')
+<!doctype html>
+<html lang="en">
+@include('components.header')
 @section('title', 'Dashboard')
+
 <body class="bg-gray-50">
-    <div class="flex min-h-screen">
+    <div class="flex min-h-screen relative">
+        {{-- sidebar --}}
         @include('components.sidebar')
         <!-- Main Content -->
         <div class="flex-1 flex flex-col overflow-hidden">
@@ -10,7 +14,7 @@
             <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <a href="{{ route('index') }}"><x-status-card title="Total Products" :value="$totalProducts"
                         icon-class="fas fa-box" icon-bg="bg-primary-100" icon-color="text-primary-600" /></a>
-                <a href="{{ route('staffs') }}">
+                <a href="{{ route('staff') }}">
                     <x-status-card title="Active Staff" :value="$totalStaffs" icon-class="fas fa-users"
                         icon-bg="bg-green-100" icon-color="text-green-600" trend-text="8.2% from last month"
                         trend-color="text-green-500" />
@@ -26,13 +30,15 @@
             <!-- Content Area -->
             <main class="flex-1 overflow-y-auto p-6 relative">
                 <!-- Product Section -->
+                @yield('product')
+                @yield('product-details')
                 @yield('staffs')
                 @yield('users')
-                @yield('order')
-                @yield('product-details')
-                @yield('productContent')
+                @yield('orders')
             </main>
         </div>
     </div>
+    @stack('btnDelete')
 </body>
-@stack('add-script')
+
+</html>

@@ -132,6 +132,7 @@
       <path value="$PROJECT_DIR$/Server-side/vendor/sebastian/type" />
       <path value="$PROJECT_DIR$/Server-side/vendor/sebastian/diff" />
       <path value="$PROJECT_DIR$/Server-side/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/Server-side/vendor/spatie/laravel-permission" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />

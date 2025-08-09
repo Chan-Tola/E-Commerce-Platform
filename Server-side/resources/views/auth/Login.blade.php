@@ -1,8 +1,8 @@
 @extends('components.header')
 <!-- Load jQuery first -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @section('title', 'Login Page')
 <main class="h-full flex bg-[#e8e8e8] flex-col gap-[5rem] justify-center items-center">
     <section>
@@ -15,7 +15,8 @@
             log in
         </h4>
 
-        <form class="mt-2 mb-2 w-80 h-80 max-w-screen-lg sm:w-96" action="{{route('loginSubmit')}}" method="post" id="loginForm">
+        <form class="mt-2 mb-2 w-80 h-80 max-w-screen-lg sm:w-96" action="{{ route('loginSubmit') }}" method="post"
+            id="loginForm">
             @csrf
             <div class="mb-1 flex flex-col gap-6">
                 <div class="w-full max-w-sm min-w-[200px]">
@@ -59,24 +60,20 @@
         </form>
     </section>
     <!-- Custom Loading Overlay -->
-    <div id="custom-loader" class="fixed inset-0 bg-[#212121] bg-opacity-80 z-50 flex items-center justify-center hidden">
+    <div id="custom-loader"
+        class="fixed inset-0 bg-[#212121] bg-opacity-80 z-50 flex items-center justify-center hidden">
         <div class="flex flex-row gap-2">
             <div class="w-[20px] h-[20px] rounded-full bg-white animate-bounce"></div>
-            <div
-                class="w-[20px] h-[20px] rounded-full bg-white animate-bounce [animation-delay:-.3s]"
-            ></div>
-            <div
-                class="w-[20px] h-[20px] rounded-full bg-white animate-bounce [animation-delay:-.5s]"
-            ></div>
+            <div class="w-[20px] h-[20px] rounded-full bg-white animate-bounce [animation-delay:-.3s]"></div>
+            <div class="w-[20px] h-[20px] rounded-full bg-white animate-bounce [animation-delay:-.5s]"></div>
         </div>
 
     </div>
 
 
-    @if(session('sweet-alert'))
-
+    @if (session('sweet-alert'))
         <script>
-            document.addEventListener('DOMContentLoaded',function (){
+            document.addEventListener('DOMContentLoaded', function() {
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
@@ -95,9 +92,9 @@
             });
         </script>
     @endif
-
 </main>
 <script src="{{ asset('js/auth-login.js') }}"></script>
+<script src="{{ asset('js/formInput.js') }}"></script>
 <style>
     .form {
         --background: #d3d3d3;
@@ -158,4 +155,3 @@
         width: 100%;
     }
 </style>
-

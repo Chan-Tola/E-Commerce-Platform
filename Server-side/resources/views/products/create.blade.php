@@ -1,8 +1,9 @@
 @extends('components.header')
-@section('title', 'Form Add')
+@section('title', 'form Add')
 
 <body class="bg-gray-50">
     <div class="flex min-h-screen">
+        {{-- sidebar --}}
         @include('components.sidebar')
         <!-- Main Content -->
         <div class="flex-1 flex flex-col overflow-hidden">
@@ -13,10 +14,25 @@
                     class="max-w-xl mx-auto p-6 bg-white shadow-lg rounded-2xl space-y-4" method="POST"
                     enctype="multipart/form-data">
                     @csrf
-                    {{-- @csrf this is using for token --}}
-
                     <h2 class="text-2xl font-bold text-center">Add New Product</h2>
+                    <!-- Imgae -->
+                    <figure class="flex flex-col items-start space-y-2">
+                        <label class="block text-gray-700 font-medium">Profile Picture</label>
+                        <!-- Hidden File Input -->
+                        <input type="file" name="image" accept="image/*" class="image-input hidden"
+                            id="customFileInput" />
+                        <!-- Image preview -->
+                        <img class="image-preview hidden mt-5 w-48 h-48  object-contain rounded border" />
 
+                        <!-- Custom Upload Button -->
+                        <label for="customFileInput"
+                            class="cursor-pointer  text-center  p-4 bg-blue-50 text-blue-700 hover:bg-blue-100 rounded-full font-semibold text-sm">
+                            <i class="fa-solid fa-image"></i>
+                        </label>
+                        @error('image')
+                            <span class="text-red-600">Name is required</span>
+                        @enderror
+                    </figure>
                     <!-- Name -->
                     <div>
                         <label class="block text-gray-700 font-medium mb-1">Product Name</label>
@@ -60,6 +76,9 @@
                             </option>
                             <option>normal</option>
                         </select>
+                        @error('status')
+                            <span class="text-red-600">Status is required</span>
+                        @enderror
                     </div>
 
                     <!-- Sell Date -->
@@ -67,23 +86,9 @@
                         <label class="block text-gray-700 font-medium mb-1">Sell Date</label>
                         <input type="date" name="sell_date"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                    </div>
-
-                    <!-- Image -->
-                    <div class="flex flex-col items-start space-y-2">
-                        <label class="block text-gray-700 font-medium">Product Image</label>
-                        <!-- Hidden File Input -->
-                        <input type="file" name="image" accept="image/*" class="image-input hidden"
-                            id="customFileInput" />
-
-                        <!-- Custom Upload Button -->
-                        <label for="customFileInput"
-                            class="cursor-pointer  text-center  p-4 bg-blue-50 text-blue-700 hover:bg-blue-100 rounded-full font-semibold text-sm">
-                            <i class="fa-solid fa-image"></i>
-                        </label>
-
-                        <!-- Image preview -->
-                        <img class="image-preview hidden mt-5 w-48 h-48 object-cover rounded border" />
+                        @error('sell_date')
+                            <span class="text-red-600">Sell Date is required</span>
+                        @enderror
                     </div>
 
                     <!-- Submit Button -->
@@ -106,32 +111,4 @@
     <x-sweet-alert type= "Oops..." :message="Something went wrong!" />
 @endif
 {{-- code for show image change --}}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.image-input').forEach(input => {
-            input.addEventListener('change', event => {
-                const file = event.target.files[0];
-                if (file) {
-                    // Show file name
-                    const fileNameElement = input.closest('div').querySelector('.file-name');
-                    if (fileNameElement) {
-                        fileNameElement.textContent = "Selected file: " + file.name;
-                        fileNameElement.classList.remove('hidden');
-                    }
-
-                    // Show image preview
-                    const reader = new FileReader();
-                    reader.onload = e => {
-                        const preview = input.closest('div').querySelector(
-                            '.image-preview');
-                        if (preview) {
-                            preview.src = e.target.result;
-                            preview.classList.remove('hidden');
-                        }
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-        });
-    });
-</script>
+<script src="{{ asset('js/image-preview.js') }}"></script>

@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 
 class Staff extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory,HasRoles;
     const TABLENAME = 'tbstaff';
     protected $table = self::TABLENAME;
     const ID = 'id';

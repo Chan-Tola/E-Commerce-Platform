@@ -2,13 +2,13 @@
 if (!function_exists('icon_edit')) {
     function icon_edit()
     {
-        return  'helloworld';
+        return  '<i class="fas fa-edit"></i>';
     }
 };
 if (!function_exists('icon_delete')) {
     function icon_delete()
     {
-        return  'helloworld';
+        return  '<i class="fas fa-trash-alt"></i>';
     }
 };
 

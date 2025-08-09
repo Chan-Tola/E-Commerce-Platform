@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\OrderWebController;
 use App\Http\Controllers\ProductDetailWebController;
 use App\Http\Controllers\ProductWebController;
@@ -7,6 +8,9 @@ use App\Http\Controllers\UserWebController;
 use App\Http\Controllers\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
+Route::middleware(['auth:staff'])->controller(ProductWebController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+});
 // Group of Product Route
 
 // index page
@@ -28,22 +32,20 @@ Route::controller(ProductDetailWebController::class)->group(function () {
     Route::delete('/productdetail/destroy/{id}', 'destroy')->name('productdetail.destory');
 });
 
+
 Route::controller(StaffWebController::class)->group(function () {
-    Route::get('/staffs', [StaffWebController::class, 'index'])->name('staffs');
-    Route::get('/staff/create', [StaffWebController::class, 'create'])->name('staff.create');
+    Route::get('/staff', [StaffWebController::class, 'index'])->name('staff');
+    Route::get('/staff/create', [StaffWebController::class, 'create'])->name('staff.form');
     Route::post('/staff/store', [StaffWebController::class, 'store'])->name('staff.store');
+    Route::get('/staff/edit/{id}', [StaffWebController::class, 'edit'])->name('staff.edit');
+    Route::put('/staff/update/{id}', [StaffWebController::class, 'update'])->name('staff.update');
 });
 Route::get('/users', [UserWebController::class, 'index'])->name('users.index');
 Route::get('/users/create', [UserWebController::class, 'create'])->name('user.create');
 Route::get('/orders', [OrderWebController::class, 'index'])->name('orders');
 
-
 Route::controller(AuthenticationController::class)->group(function () {
-    Route::get('/login','loginForm')->name('login');
-    Route::post('/login','login')->name('loginSubmit');
-    Route::post('/logout','logout')->name('logout');
-});
-
-Route::middleware(['auth:staff'])->controller(ProductWebController::class)->group(function () {
-    Route::get('/', 'index')->name('index');
+    Route::get('/login', 'loginForm')->name('login');
+    Route::post('/login', 'login')->name('loginSubmit');
+    Route::post('/logout', 'logout')->name('logout');
 });

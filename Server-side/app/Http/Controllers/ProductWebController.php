@@ -30,6 +30,7 @@ class ProductWebController extends Controller
     //fn for insert data into database
     public function store(Request $request)
     {
+        $imagePath = null; // Initialize as null
         // Validate the input data to check it is have data or check any errors
         $validate = $request->validate([
             Product::NAME => 'required|string|max:255',
@@ -39,8 +40,6 @@ class ProductWebController extends Controller
             Product::SELL_DATE => 'nullable|date',
             Product::IMAGE => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
-
-        
 
 
         // ✅ Image handling
@@ -84,6 +83,10 @@ class ProductWebController extends Controller
         ]);
         // Image handling ()
         if ($request->hasFile(Product::IMAGE)) {
+            // Delete old image if exists
+            if ($product->image && file_exists(public_path($product->image))) {
+                unlink(public_path($product->image));
+            }
             $image = $request->file(Product::IMAGE);
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('uploads'), $imageName);

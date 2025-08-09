@@ -16,12 +16,12 @@ class UserWebController extends Controller
         $totalProducts = Product::count();
         $totalStaffs = Staff::count();
         $totalUsers = User::count();
-        return view('users.index', compact('users', 'totalProducts', 'totalStaffs', 'totalUsers'));
+        return view('admin.users.index', compact('users', 'totalProducts', 'totalStaffs', 'totalUsers'));
     }
 
     // function create user
     public function create()
     {
-        return view('users.create');
+        return view('admin.users.create');
     }
 }

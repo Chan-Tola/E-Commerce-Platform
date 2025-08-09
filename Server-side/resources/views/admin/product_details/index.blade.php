@@ -1,6 +1,6 @@
 @extends('layouts.master')
-@extends('components.header')
 @section('title', 'Product Detail')
+{{-- yield--}}
 @section('product-details')
     <main class="bg-gray-100 shadow-md rounded-lg p-2">
         <section class="flex items-center justify-between mb-4 mt-6">
@@ -99,6 +99,7 @@
             </div>
         </section>
     </main>
+    {{-- scope js --}}
     <script src="{{ asset('js/custome.js') }}"></script>
     @if (session('alert_message'))
         <x-sweet-alert :type="session('alert_type', 'success')" :message="session('alert_message')" :title="null" />
@@ -106,6 +107,7 @@
     @if ($errors->any())
         <x-sweet-alert type= "Oops..." :message="Something went wrong!" />
     @endif
+
     <script>
         // JavaScript functions to show/hide modal
         function showModal() {
@@ -122,4 +124,5 @@
             }
         });
     </script>
+
 @endsection

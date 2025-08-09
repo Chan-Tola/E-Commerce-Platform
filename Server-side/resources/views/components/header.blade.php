@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
     <!-- ✅ jQuery 3.7.1: Used for DOM manipulation, AJAX, and event handling -->
@@ -20,10 +17,10 @@
 
     <!-- ✅ Alpine.js 3.x: Lightweight JavaScript framework for simple interactivity -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
 
     <!-- ✅ Tailwind CSS (via Vite): Utility-first CSS framework for fast UI styling -->
     @vite('resources/css/app.css')
-
     @push('header-script')
         <!-- ✅ Tailwind custom color configuration -->
         <script>
@@ -49,7 +46,6 @@
             }
         </script>
     @endpush
-
     <style>
         /* ✅ Google Font (Inter): Clean, modern typography */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');

@@ -16,15 +16,26 @@ class StaffWebController extends Controller
         $totalProducts = Product::count();
         $totalStaffs = Staff::count();
         $totalUsers = User::count();
-        return view('admin.staffs',compact('staffs','totalProducts', 'totalStaffs', 'totalUsers'));
+        return view('admin.staffs.index', compact('staffs', 'totalProducts', 'totalStaffs', 'totalUsers'));
     }
 
+    // show form for add new staff
     public function create()
     {
         return view('admin.create');
     }
-    public function store(Request $request)
-    {
+    // fn for insert data into database
+    public function store(Request $request) {}
 
+    // show form for edit staff
+    public function edit($id)
+    {
+        $staff = Staff::findOrFail($id);
+        return view('admin.staffs.edit', compact('staff'));
+    }
+    // fn for update staff data
+    public function update(Request $request, $id)
+    {
+        $staff = Staff::findOrFail($id);
     }
 }

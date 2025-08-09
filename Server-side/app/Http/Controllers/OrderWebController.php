@@ -21,7 +21,7 @@ class OrderWebController extends Controller
         $totalUsers = User::count();
         // get all product to show
         $orders  = Order::all();
-        return view('orders.index', compact('orders', 'totalProducts', 'totalStaffs', 'totalUsers'));
+        return view('admin.orders.index', compact('orders', 'totalProducts', 'totalStaffs', 'totalUsers'));
     }
 
     /**

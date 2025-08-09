@@ -19,7 +19,7 @@ class ProductDetailWebController extends Controller
         $totalStaffs = Staff::count();
         $totalUsers = User::count();
         $productDetails = ProductDetail::with('product')->get();
-        return view('products.product_details.index', compact('totalProducts', 'totalStaffs', 'totalUsers', 'productDetails'));
+        return view('admin.product_details.index', compact('totalProducts', 'totalStaffs', 'totalUsers', 'productDetails'));
     }
 
     /**
@@ -28,7 +28,7 @@ class ProductDetailWebController extends Controller
     public function create()
     {
         $productDetails = Product::get();
-        return view('products.product_details.create', compact('productDetails'));
+        return view('admin.product_details.create', compact('productDetails'));
     }
 
     /**
@@ -68,7 +68,7 @@ class ProductDetailWebController extends Controller
     public function edit(string $id)
     {
         $product_detail = ProductDetail::find($id);
-        return view('products.product_details.edit', compact('product_detail'));
+        return view('admin.product_details.edit', compact('product_detail'));
     }
 
     /**
@@ -95,7 +95,7 @@ class ProductDetailWebController extends Controller
     public function delete(string $id)
     {
         $product_detail = ProductDetail::findOrFail($id);
-        return view('products.product_details.delete', compact('product_detail'));
+        return view('admin.product_details.delete', compact('product_detail'));
     }
     public function destroy(string $id)
     {

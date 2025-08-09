@@ -1,5 +1,5 @@
 @extends('components.header')
-@section('title', 'Update Form')
+@section('title', 'Update form')
 
 <body class="bg-gray-50">
     <div class="flex min-h-screen">
@@ -106,20 +106,4 @@
 @if ($errors->any())
     < x-sweet-alert type= "Oops..." :message="Something went wrong!" />
 @endif
-<script>
-    function handleImageChange(event) {
-        const file = event.target.files[0];
-        const previewImag = document.getElementById('thumbnailPreview');
-        if (file) {
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                previewImag.src = e.target.result;
-                previewImag.classList.remove('hidden');
-            }
-
-            reader.readAsDataURL(file);
-        }
-
-    }
-</script>
+<script src="{{ asset('js/image-preview.js') }}"></script>

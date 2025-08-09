@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@extends('components.header')
 @section('title', 'User')
 @section('users')
     <div class="p-6">
@@ -39,10 +38,10 @@
                                 </td>
                                 <td class="px-6 py-4 text-right space-x-2">
                                     <a href="#" class="text-indigo-600 hover:text-indigo-800 transition">
-                                        <i class="fas fa-edit text-lg"></i>
+                                        {!! icon_edit() !!}
                                     </a>
                                     <a href="#" class="text-red-500 hover:text-red-700 transition">
-                                        <i class="fas fa-trash text-lg"></i>
+                                        {!! icon_delete() !!}
                                     </a>
                                 </td>
                             </tr>
