@@ -2,6 +2,7 @@
 <html lang="en">
 @include('components.header')
 @section('title', 'Dashboard')
+
 <body class="bg-gray-50">
     <div class="flex min-h-screen relative">
         {{-- sidebar --}}
@@ -38,6 +39,7 @@
         </div>
     </div>
     @stack('btnDelete')
+    @stack('auth-login')
 </body>
 
 </html>

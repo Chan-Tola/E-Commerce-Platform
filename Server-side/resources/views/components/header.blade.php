@@ -8,16 +8,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    @stack('login-script')
     <!-- ✅ Font Awesome 6.4.0: Provides a wide range of icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- ✅ SweetAlert2 v11: Beautiful, responsive alert and modal popups -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
+
     <!-- ✅ Alpine.js 3.x: Lightweight JavaScript framework for simple interactivity -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="//unpkg.com/alpinejs" defer></script>
+
 
     <!-- ✅ Tailwind CSS (via Vite): Utility-first CSS framework for fast UI styling -->
     @vite('resources/css/app.css')
@@ -46,6 +49,7 @@
             }
         </script>
     @endpush
+
     <style>
         /* ✅ Google Font (Inter): Clean, modern typography */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');

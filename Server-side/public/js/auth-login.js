@@ -1,8 +1,8 @@
-$(document).ready(function() {
-    console.log("jQuery is loaded and ready!");
-    $('form').on('submit', function(e) {
+$(document).ready(function () {
+    console.log("auth-login.js is running!");
+
+    $("form").on("submit", function () {
         // Show the custom loader
-        $('#custom-loader').removeClass('hidden');
+        $("#custom-loader").removeClass("hidden");
     });
 });
-

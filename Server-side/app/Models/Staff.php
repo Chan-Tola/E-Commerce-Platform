@@ -8,28 +8,34 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Staff extends Authenticatable
 {
-    use HasFactory,HasRoles;
+    use HasFactory, HasRoles;
     const TABLENAME = 'tbstaff';
     protected $table = self::TABLENAME;
+    // Column constants
     const ID = 'id';
     const FIRST_NAME = 'first_name';
     const LAST_NAME = 'last_name';
-    CONST GENDER = 'gender';
+    const GENDER = 'gender';
     const EMAIL = 'email';
     const PASSWORD = 'password';
     const PHONE = 'phone';
     const ADDRESS = 'address';
     const ROLE = 'role';
-    CONST DOB = 'date_of_birth';
-    CONST HIRE_DATE = 'hire_date';
-    CONST STATUS = 'status';
-    CONST PHOTO = 'profile_picture';
+    const DOB = 'date_of_birth';
+    const HIRE_DATE = 'hire_date';
+    const STATUS = 'status';
+    const PROFILE = 'profile_picture';
+
+    // Status enum constants
+    const STATUS_ACTIVE = 'active';
+    const STATUS_RESIGNED = 'resigned';
+
 
     protected $fillable =
     [
         self::EMAIL,
         self::PASSWORD,
-        self::PHOTO,
+        self::PROFILE,
         self::ADDRESS,
         self::ROLE,
         self::DOB,
@@ -45,5 +51,4 @@ class Staff extends Authenticatable
         self::DOB => 'date',
         self::HIRE_DATE => 'date',
     ];
-
 }

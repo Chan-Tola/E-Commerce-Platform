@@ -18,6 +18,7 @@
                     <thead class="bg-gray-50 uppercase text-xs text-gray-500 border-b">
                         <tr>
                             <th class="px-6 py-3 text-left">N <sup>0</sup></th>
+                            <th class="px-6 py-3 text-left">Profile</th>
                             <th class="px-6 py-3 text-left">Full Name</th>
                             <th class="px-6 py-3 text-left">Email</th>
                             <th class="px-6 py-3 text-left">Role</th>
@@ -29,28 +30,34 @@
                         @foreach ($staffs as $index => $member)
                             <tr class="hover:bg-gray-50 transition">
                                 <td class="px-6 py-4">{{ $index + 1 }}</td>
-                                <!-- Profile image + full name -->
-                                <td class="px-6 py-4 flex items-center space-x-3">
-                                    {{-- <img src="{{ $member->profile_picture ?? 'https://via.placeholder.com/40x40?text=👤' }}"
-                                        alt="{{ $member->full_name }}"
-                                        class="w-10 h-10 rounded-full object-cover border border-gray-300"> --}}
-                                    <span class="font-medium">{{ fullName($member) }}</span>
+                                {{-- profile --}}
+                                <td class="px-6 py-4">
+                                    <img src="{{ asset($member->profile_picture) }}" alt="profile"
+                                        class="w-[60px] h-[60px] object-cover rounded-full">
                                 </td>
+                                {{-- full name --}}
+                                <td class="px-6 py-4 font-medium">
+                                    {{ fullName($member) }}
+                                </td>
+                                {{-- email --}}
                                 <td class="px-6 py-4">{{ $member->email }}</td>
+                                {{-- role --}}
                                 <td class="px-6 py-4">
                                     <span
                                         class="inline-block px-2 py-1 text-xs font-medium rounded
-                                {{ $member->role === 'admin' ? 'bg-red-100 text-red-600' : ($member->role === 'HR' ? 'bg-amber-100 text-amber-600' : 'bg-green-100 text-green-600') }}">
+                                        {{ $member->role === 'admin' ? 'bg-red-100 text-red-600' : ($member->role === 'HR' ? 'bg-amber-100 text-amber-600' : 'bg-green-100 text-green-600') }}">
                                         {{ ucfirst($member->role) }}
                                     </span>
                                 </td>
+                                {{-- status --}}
                                 <td class="px-6 py-4">
                                     <span
                                         class="inline-block px-2 py-1 text-xs font-medium rounded
-                                {{ $member->status === 'active' ? 'bg-green-100 text-green-600' : ($member->status === 'on_leave' ? 'bg-yellow-100 text-yellow-600' : 'bg-gray-200 text-gray-600') }}">
+                                        {{ $member->status === 'active' ? 'bg-green-100 text-green-600' : ($member->status === 'on_leave' ? 'bg-yellow-100 text-yellow-600' : 'bg-gray-200 text-gray-600') }}">
                                         {{ ucfirst(str_replace('_', ' ', $member->status)) }}
                                     </span>
                                 </td>
+                                {{-- actions --}}
                                 <td class="px-6 py-4 text-right space-x-2">
                                     {{-- {{ route('staff.edit', $member->id) }} --}}
                                     <a href="{{ route('staff.edit', $member->id) }}"

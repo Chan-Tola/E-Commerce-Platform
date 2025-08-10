@@ -19,11 +19,23 @@
                     <input type="email" name="email"
                         class="w-full placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2"
                         placeholder="Your Email" />
+                    @error('email')
+                        {{-- Displays a validation error message if the email field is not filled --}}
+                        <span class="text-red-600">Email is required</span>
+                    @enderror
                 </div>
-                <div class="w-full max-w-sm min-w-[200px]">
-                    <input type="password" name="password"
+                <div class="w-full max-w-sm  relative min-w-[200px]">
+                    <input type="password" name="password" id="password"
                         class="w-full placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2"
                         placeholder="Your Password" />
+                    <button type="button" onclick="togglePassword('password', this)"
+                        class="absolute right-2 top-3 text-gray-500">
+                        <i class="fa fa-eye"></i>
+                    </button>
+                    @error('password')
+                        {{-- Displays a validation error message if the email field is not filled --}}
+                        <span class="text-red-600">Password is required</span>
+                    @enderror
                 </div>
             </div>
             <div class="inline-flex items-center mt-2">
@@ -56,39 +68,24 @@
         </form>
     </section>
     <!-- Custom Loading Overlay -->
-    <div id="custom-loader"
-        class="fixed inset-0 bg-[#212121] bg-opacity-80 z-50 flex items-center justify-center hidden">
+    <section id="custom-loader"
+        class="hidden fixed inset-0 bg-[#212121] bg-opacity-80 z-50 flex items-center justify-center">
         <div class="flex flex-row gap-2">
             <div class="w-[20px] h-[20px] rounded-full bg-white animate-bounce"></div>
-            <div class="w-[20px] h-[20px] rounded-full bg-white animate-bounce [animation-delay:-.3s]"></div>
-            <div class="w-[20px] h-[20px] rounded-full bg-white animate-bounce [animation-delay:-.5s]"></div>
+            <div class="w-[20px] h-[20px] rounded-full bg-white animate-bounce" style="animation-delay: -0.3s;"></div>
+            <div class="w-[20px] h-[20px] rounded-full bg-white animate-bounce" style="animation-delay: -0.5s;"></div>
         </div>
+    </section>
 
-    </div>
 
     @if (session('sweet-alert'))
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "error",
-                    title: "something wrong"
-                });
-            });
-        </script>
+        <x-sweet-alert type="error" :message="session('alert-message')" />
     @endif
+
 </main>
-<script src="{{ asset('js/auth-login.js') }}"></script>
-<script src="{{ asset('js/formInput.js') }}"></script>
+@push('login-script')
+    <script src="{{ asset('js/auth-login.js') }}"></script>
+    <script src="{{ asset('js/formInput.js') }}"></script>
+@endpush
 {{-- In your Blade file --}}
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">

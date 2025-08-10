@@ -75,8 +75,8 @@
         <div class="flex items-center justify-between relative">
             {{-- Profile Pic --}}
             <div class="flex items-center space-x-3">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full object-cover"
-                    alt="Admin">
+                <img src="{{ asset(Auth::guard('staff')->user()->profile_picture) }}"
+                    class="w-10 h-10 rounded-full object-cover" alt="staff profile picture">
                 {{-- name staff --}}
                 <span>
                     {{ fullName(Auth::guard('staff')->user()) }}

@@ -8,12 +8,19 @@ use App\Http\Controllers\UserWebController;
 use App\Http\Controllers\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
+// NOTE: Login page
+Route::controller(AuthenticationController::class)->group(function () {
+    Route::get('/login', 'loginForm')->name('login');
+    Route::post('/login', 'login')->name('loginSubmit');
+    Route::post('/logout', 'logout')->name('logout');
+});
+// NOTE: after Login
 Route::middleware(['auth:staff'])->controller(ProductWebController::class)->group(function () {
+
     Route::get('/', 'index')->name('index');
 });
-// Group of Product Route
 
-// index page
+// NOTE: Prodcut Controller Group 
 Route::controller(ProductWebController::class)->group(function () {
     Route::get('/product/create', 'create')->name('product.create');
     Route::post('/product/store', 'store')->name('product.store');
@@ -21,7 +28,7 @@ Route::controller(ProductWebController::class)->group(function () {
     Route::put('/product/update/{id}', 'update')->name('product.update');
     Route::delete('/product/delete/{id}', 'delete')->name('product.delete');
 });
-// Product detail routes grouped by controller
+// NOTE: Product detail routes grouped by controller
 Route::controller(ProductDetailWebController::class)->group(function () {
     Route::get('/productdetail', 'index')->name('productdetail.index');
     Route::get('/productdetail/create', 'create')->name('productdetail.create');
@@ -32,7 +39,7 @@ Route::controller(ProductDetailWebController::class)->group(function () {
     Route::delete('/productdetail/destroy/{id}', 'destroy')->name('productdetail.destory');
 });
 
-
+// NOTE: Staffs routes grouped by controller
 Route::controller(StaffWebController::class)->group(function () {
     Route::get('/staff', [StaffWebController::class, 'index'])->name('staff');
     Route::get('/staff/create', [StaffWebController::class, 'create'])->name('staff.form');
@@ -40,12 +47,8 @@ Route::controller(StaffWebController::class)->group(function () {
     Route::get('/staff/edit/{id}', [StaffWebController::class, 'edit'])->name('staff.edit');
     Route::put('/staff/update/{id}', [StaffWebController::class, 'update'])->name('staff.update');
 });
+// TODO: Users routes grouped by controller
 Route::get('/users', [UserWebController::class, 'index'])->name('users.index');
 Route::get('/users/create', [UserWebController::class, 'create'])->name('user.create');
+// TODO: Order routes grouped by controller
 Route::get('/orders', [OrderWebController::class, 'index'])->name('orders');
-
-Route::controller(AuthenticationController::class)->group(function () {
-    Route::get('/login', 'loginForm')->name('login');
-    Route::post('/login', 'login')->name('loginSubmit');
-    Route::post('/logout', 'logout')->name('logout');
-});
