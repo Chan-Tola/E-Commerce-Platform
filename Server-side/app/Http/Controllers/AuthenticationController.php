@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Staff;
 
 class AuthenticationController extends Controller
 {
@@ -13,21 +14,34 @@ class AuthenticationController extends Controller
     {
         return view('auth.login');
     }
-    // function check login
+    //TODO: function check login
     public  function login(Request $request)
     {
+
+        //NOTE: Validate the request data
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|string|min:8',
         ]);
-        $data = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
-        // checking account
+        //note: If validation fails, redirect back with errors
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        //note: Get validated data
+        $data = $validator->validated();
+        //note: Attempt authentication
         if (Auth::guard('staff')->attempt($data)) {
+            $user = Auth::guard('staff')->user();
+            /** @var Staff|null $user */  //todo: Helps editor know $user is Staff model
+            if ($user) {
+                $user->status = 'active'; //todo: Set the user's status to offline
+                $user->save();
+            }
             return redirect()->route('index')->with([
                 'sweet-alert' => true,
+                'type' => 'success', //note: this will be used for the icon
                 'alert-message' => 'Welcome back ' . fullName(Auth::guard('staff')->user()),
             ]);
         }
@@ -37,14 +51,16 @@ class AuthenticationController extends Controller
         ]);
     }
 
-    // function logout
+    //TODO: function logout
     public function logout(Request $request)
     {
-        Auth::guard('staff')->logout(); //Use staff guard
-
-        //        $request->session()->invalidate();
-        //        $request->session()->regenerateToken();
-        //
+        $user = Auth::guard('staff')->user();
+        /** @var Staff|null $user */  //todo: Helps editor know $user is Staff model
+        if ($user) {
+            $user->status = 'offline'; //todo: Set the user's status to offline
+            $user->save();
+        }
+        Auth::guard('staff')->logout(); //NOTE: Logout the user from the 'staff' guard
         return  redirect()->route('login');
     }
 }

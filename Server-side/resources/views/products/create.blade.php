@@ -104,11 +104,11 @@
     </div>
 </body>
 
-@if (Session::has('success'))
-    <x-sweet-alert type="success" :message="session('success')" />
+@if (session()->has('sweet-alert'))
+    <x-sweet-alert :type="session('type')" :message="session('alert-message')" />
 @endif
 @if ($errors->any())
-    <x-sweet-alert type= "Oops..." :message="Something went wrong!" />
+    <x-sweet-alert :type="session('type')" :message="session('alert-message')" />
 @endif
 {{-- code for show image change --}}
 <script src="{{ asset('js/image-preview.js') }}"></script>

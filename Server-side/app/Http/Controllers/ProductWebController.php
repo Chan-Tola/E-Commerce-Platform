@@ -59,8 +59,11 @@ class ProductWebController extends Controller
             Product::SELL_DATE => $validate[Product::SELL_DATE] ?? null,
             Product::IMAGE => $imagePath,
         ]);
-
-        return redirect('/product/create')->with('success', 'Prodcut created successfully!');
+        return redirect()->back()->with([
+            'sweet-alert' => true,
+            'type' => 'success', //note: this will be used for the icon
+            'alert-message' => 'Added Successfully!' //note: this will be used for the message
+        ]);
     }
 
     // Show the edit form
@@ -103,13 +106,27 @@ class ProductWebController extends Controller
         $product->sell_date = $request->sell_date;
 
         $product->save();
-        return back()->with('success', 'Product updated successfully!');
+
+        return redirect()->back()->with([
+            'sweet-alert' => true,
+            'type' => 'success', //note: this will be used for the icon
+            'alert-message' => 'Updated Successfully!' //note: this will be used for the message
+        ]);
     }
 
     // function remove product
     public function delete($id)
     {
+        $product = Product::findOrFail($id);
+        // Delete the product image if it exists
+        if ($product->image && file_exists(public_path($product->image))) {
+            unlink(public_path($product->image));
+        }
         Product::find($id)->delete();
-        return response()->json(['success' => true, 'message' => 'Product deleted successfully!']);
+        return response()->json([
+            'sweet-alert' => true,
+            'type' => 'success', //note: this will be used for the icon
+            'alert-message' => 'Added Successfully!' //note: this will be used for the message
+        ]);
     }
 }

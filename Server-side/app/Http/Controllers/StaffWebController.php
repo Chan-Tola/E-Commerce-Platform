@@ -72,7 +72,11 @@ class StaffWebController extends Controller
             Staff::STATUS       =>  Staff::STATUS_ACTIVE, //TODO: Set default status to 'active'
         ]);
         // NOTE:Redirect back with success message
-        return redirect()->back()->with('success', 'Staff created successfully.');
+        return redirect()->back()->with([
+            'sweet-alert' => true,
+            'type' => 'success', //note: this will be used for the icon
+            'alert-message' => 'Added Successfully!' //note: this will be used for the message
+        ]);
     }
 
     //NOTE: show form for edit staff

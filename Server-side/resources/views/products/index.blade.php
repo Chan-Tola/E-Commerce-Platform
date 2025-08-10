@@ -129,35 +129,12 @@
         </div>
     </div>
 @endsection
-
-{{-- check logint --}}
-{{-- @if (session('sweet-alert'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "success",
-                title: "{{ session('alert-message') }}",
-            });
-
-        });
-    </script>
-@endif --}}
-
-@if (Session::has('sweet-alert'))
-    <x-sweet-alert icon="success" :message="session('alert-message')" />
+@if (session()->has('sweet-alert'))
+    <x-sweet-alert :type="session('type')" :message="session('alert-message')" />
 @endif
-
+@if ($errors->any())
+    <x-sweet-alert :type="session('type')" :message="session('alert-message')" />
+@endif
 {{-- push script --}}
 @push('btnDelete')
     {{-- Add this in your layout or at the bottom of index.blade.php --}}

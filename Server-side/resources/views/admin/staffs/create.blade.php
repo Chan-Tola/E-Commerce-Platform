@@ -168,11 +168,11 @@
         </div>
     </div>
 </body>
-@if (Session::has('success'))
-    <x-sweet-alert type="success" :message="session('success')" /> {{-- Shows a SweetAlert success message if the session has a 'success' key (after successful form submission) --}}
+@if (session()->has('sweet-alert'))
+    <x-sweet-alert :type="session('type')" :message="session('alert-message')" />
 @endif
 @if ($errors->any())
-    <x-sweet-alert type= "error" :message="Something went wrong!" /> {{-- Shows a SweetAlert error message if there are any validation errors --}}
+    <x-sweet-alert :type="session('type')" :message="session('alert-message')" />
 @endif
 <script src="{{ asset('js/image-preview.js') }}"></script>
 <script src="{{ asset('js/formInput.js') }}"></script>

@@ -101,11 +101,11 @@
     </main>
     {{-- scope js --}}
     <script src="{{ asset('js/custome.js') }}"></script>
-    @if (session('alert_message'))
-        <x-sweet-alert :type="session('alert_type', 'success')" :message="session('alert_message')" :title="null" />
+    @if (session()->has('sweet-alert'))
+        <x-sweet-alert :type="session('type')" :message="session('alert-message')" />
     @endif
     @if ($errors->any())
-        <x-sweet-alert type= "Oops..." :message="Something went wrong!" />
+        <x-sweet-alert :type="session('type')" :message="session('alert-message')" />
     @endif
 
     <script>

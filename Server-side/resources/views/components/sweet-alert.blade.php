@@ -18,7 +18,6 @@
         });
         Toast.fire({
             icon: "{{ $type }}",
-            // title: "{{ $title ?? ($type === 'success' ? 'Success!' : 'Oops...') }}",
             text: "{{ $message }}"
         });
     });

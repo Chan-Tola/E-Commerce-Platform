@@ -47,7 +47,11 @@ class ProductDetailWebController extends Controller
             ProductDetail::UNITPRICE => $request->input(ProductDetail::UNITPRICE),
             ProductDetail::ADMIN_NOTES => $request->input(ProductDetail::ADMIN_NOTES),
         ]);
-        return redirect()->back()->with(['alert_message' => 'Product-detail created successfully!']);
+        return redirect()->back()->with([
+            'sweet-alert' => true,
+            'type' => 'success', //note: this will be used for the icon
+            'alert-message' => 'Added Successfully!' //note: this will be used for the message
+        ]);
     }
 
     /**
@@ -79,9 +83,9 @@ class ProductDetailWebController extends Controller
         $updated = ProductDetail::findOrFail($id);
         $updated->update($validate);
         return redirect()->back()->with([
-            'alert_type' => 'success',
-            'alert_message' => 'Product detail updated successfully!',
-            'alert_title' => 'success',
+            'sweet-alert' => true,
+            'type' => 'success', //note: this will be used for the icon
+            'alert-message' => 'Updated Successfully!' //note: this will be used for the message
         ]);
     }
 
@@ -98,9 +102,9 @@ class ProductDetailWebController extends Controller
         $deleted = ProductDetail::findOrFail($id);
         $deleted->delete();
         return redirect()->back()->with([
-            'alert_type' => 'info',
-            'alert_message' => 'Product detail deleted successfully!',
-            'alert_title' => 'success',
+            'sweet-alert' => true,
+            'type' => 'success', //note: this will be used for the icon
+            'alert-message' => 'Deleted Successfully!' //note: this will be used for the message
         ]);
     }
 }
