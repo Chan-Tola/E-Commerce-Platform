@@ -1,45 +1,51 @@
-// displays it in the preview image element.
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".image-input").forEach((input) => {
-        input.addEventListener("change", (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                // Show file name
-                const fileNameElement = input
-                    .closest("div")
-                    .querySelector(".file-name");
-                if (fileNameElement) {
-                    fileNameElement.textContent = "Selected file: " + file.name;
-                    fileNameElement.classList.remove("hidden");
-                }
-
-                // Show image preview
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    const preview = input
-                        .closest("div")
-                        .querySelector(".image-preview");
-                    if (preview) {
-                        preview.src = e.target.result;
-                        preview.classList.remove("hidden");
-                    }
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    });
-});
-function handleImageChange(event) {
+// note:This file handles image preview functionality for forms insert
+$(document).on("change", ".image-input", function (event) {
+    console.log("Image input changed:", event.target.files);
     const file = event.target.files[0];
-    const previewImag = document.getElementById("thumbnailPreview");
+    if (!file) return;
+
+    const $preview = $(this).closest("figure").find(".image-preview");
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+        $preview.attr("src", e.target.result).removeClass("hidden");
+    };
+
+    reader.readAsDataURL(file);
+});
+// note: This is function to handle image change event in edit form
+$(document).on("change", "#imageInput", function (e) {
+    const file = e.target.files[0];
     if (file) {
         const reader = new FileReader();
-
-        reader.onload = function (e) {
-            previewImag.src = e.target.result;
-            previewImag.classList.remove("hidden");
+        reader.onload = function (event) {
+            $("#thumbnailPreview")
+                .attr("src", event.target.result)
+                .removeClass("hidden"); //note: show image if hidden
         };
-
         reader.readAsDataURL(file);
     }
+});
+// note: Function to reset image preview after form reset or AJAX success
+function resetImagePreview(formSelector) {
+    const form = document.querySelector(formSelector);
+    if (!form) return;
+
+    form.querySelectorAll(".image-input").forEach((input) => {
+        input.value = ""; //note: reset file input
+        const preview = input
+            .closest("figure")
+            ?.querySelector(".image-preview");
+        if (preview) {
+            preview.src = "";
+            preview.classList.add("hidden");
+        }
+        const fileNameElement = input
+            .closest("figure")
+            ?.querySelector(".file-name");
+        if (fileNameElement) {
+            fileNameElement.textContent = "";
+            fileNameElement.classList.add("hidden");
+        }
+    });
 }

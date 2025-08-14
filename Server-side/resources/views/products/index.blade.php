@@ -87,23 +87,22 @@
                                             {!! icon_edit() !!}
                                         </a>
                                     </button>
+
                                     {{-- button delete --}}
                                     <div x-data="{ showDelete: false }">
                                         <!-- Delete Button -->
-                                        <button @click="showDelete = true"
-                                            class=" btn-deleted p-2 rounded-lg hover:bg-gray-100 text-gray-600 transition">
+                                        <button @click="showDelete = true" id="ajax-crub"
+                                            class="btn-deleted p-2 rounded-lg hover:bg-gray-100 text-gray-600 transition">
                                             <a>{!! icon_delete() !!}</a>
                                         </button>
                                         {{-- Include Delete Card --}}
                                         <div x-show="showDelete" x-transition style="display: none;"
                                             class="transform absolute top-0 left-1/3 ">
-                                            @include('products.buttonDelete')
+                                            <div @click.away="showDelete = false">
+                                                @include('products.delete')
+                                            </div>
                                         </div>
                                     </div>
-                                    {{-- button  --}}
-                                    <button class="p-2 rounded-lg hover:bg-gray-100 text-gray-600">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -129,14 +128,10 @@
         </div>
     </div>
 @endsection
+{{-- note: success button --}}
 @if (session()->has('sweet-alert'))
     <x-sweet-alert :type="session('type')" :message="session('alert-message')" />
 @endif
 @if ($errors->any())
     <x-sweet-alert :type="session('type')" :message="session('alert-message')" />
 @endif
-{{-- push script --}}
-@push('btnDelete')
-    {{-- Add this in your layout or at the bottom of index.blade.php --}}
-    <script src="{{ asset('js/product-delete.js') }}"></script>
-@endpush

@@ -106,7 +106,6 @@ class ProductWebController extends Controller
         $product->sell_date = $request->sell_date;
 
         $product->save();
-
         return redirect()->back()->with([
             'sweet-alert' => true,
             'type' => 'success', //note: this will be used for the icon
@@ -123,10 +122,11 @@ class ProductWebController extends Controller
             unlink(public_path($product->image));
         }
         Product::find($id)->delete();
-        return response()->json([
+        
+        return redirect()->back()->with([
             'sweet-alert' => true,
             'type' => 'success', //note: this will be used for the icon
-            'alert-message' => 'Added Successfully!' //note: this will be used for the message
+            'alert-message' => 'Deleted Successfully!' //note: this will be used for the message
         ]);
     }
 }

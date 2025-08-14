@@ -75,7 +75,7 @@
             <div id="createStatusModal"
                 class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 hidden">
                 <!-- Modal Container -->
-                <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-1/2 lg:w-1/3 shadow-lg rounded-md bg-white">
+                <div class="relative top-20 mx-auto p-5 border md:w-1/2  shadow-lg rounded-md bg-white">
                     <!-- Modal Header -->
                     <div class="flex items-center justify-between p-4 border-b rounded-t">
                         <h5 class="text-xl font-semibold text-gray-900" id="createStatusModalLabel"></h5>

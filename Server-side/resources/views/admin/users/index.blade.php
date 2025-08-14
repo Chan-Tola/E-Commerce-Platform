@@ -14,7 +14,6 @@
                             <th class="px-6 py-3 text-left">N <sup>0</sup></th>
                             <th class="px-6 py-3 text-left">Full Name</th>
                             <th class="px-6 py-3 text-left">Email</th>
-                            <th class="px-6 py-3 text-left">Password</th>
                             <th class="px-6 py-3 text-left">Contact</th>
                             <th class="px-6 py-3 text-left">Address</th>
                             <th class="px-6 py-3 text-left">Role</th>
@@ -27,7 +26,6 @@
                                 <td class="px-6 py-4 font-medium">{{ $index + 1 }}</td>
                                 <td class="px-6 py-4">{{ $user->name }}</td>
                                 <td class="px-6 py-4">{{ $user->email }}</td>
-                                <td class="px-6 py-4 truncate max-w-[160px] text-gray-500">{{ $user->password }}</td>
                                 <td class="px-6 py-4">{{ $user->phone }}</td>
                                 <td class="px-6 py-4">{{ $user->address }}</td>
                                 <td class="px-6 py-4">

@@ -53,15 +53,6 @@ class ProductDetailWebController extends Controller
             'alert-message' => 'Added Successfully!' //note: this will be used for the message
         ]);
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      */

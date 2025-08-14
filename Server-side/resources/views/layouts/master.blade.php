@@ -38,7 +38,6 @@
             </main>
         </div>
     </div>
-    @stack('btnDelete')
     @stack('auth-login')
 </body>
 

@@ -41,11 +41,13 @@ Route::controller(ProductDetailWebController::class)->group(function () {
 
 // NOTE: Staffs routes grouped by controller
 Route::controller(StaffWebController::class)->group(function () {
-    Route::get('/staff', [StaffWebController::class, 'index'])->name('staff');
-    Route::get('/staff/create', [StaffWebController::class, 'create'])->name('staff.form');
-    Route::post('/staff/store', [StaffWebController::class, 'store'])->name('staff.store');
-    Route::get('/staff/edit/{id}', [StaffWebController::class, 'edit'])->name('staff.edit');
-    Route::put('/staff/update/{id}', [StaffWebController::class, 'update'])->name('staff.update');
+    Route::get('/staff', 'index')->name('staff');
+    Route::get('/staff/create', 'create')->name('staff.form');
+    Route::post('/staff/store', 'store')->name('staff.store');
+    Route::get('/staff/edit/{id}', 'edit')->name('staff.edit');
+    Route::put('/staff/update/{id}', 'update')->name('staff.update');
+    Route::get('/staff/delete/{id}', 'delete')->name('staff.delete');
+    Route::delete('/staff/destory/{id}', 'destroy')->name('staff.destroy');
 });
 // TODO: Users routes grouped by controller
 Route::get('/users', [UserWebController::class, 'index'])->name('users.index');

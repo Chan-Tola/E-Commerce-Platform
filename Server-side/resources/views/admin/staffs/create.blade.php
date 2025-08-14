@@ -1,178 +1,145 @@
-@extends('components.header') {{-- This tells Blade to use the components.header layout as the base for this page --}}
-@section('title', 'Register') {{-- Sets the page title to "Register" (used in your layout) --}}
+{{-- for the image I using the Alpine.js --}}
+<section class="space-y-6 bg-white w-[30%] p-6 rounded-2xl ">
+    <form id="ajax-crub"action="{{ route('staff.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <section class="flex items-center justify-between mb-4">
+            <h2 class="text-2xl font-bold text-gray-800 text-center">Add Information</h2>
+            <button type="button"
+                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center"
+                onclick="closeModal()">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+        </section>
 
-<body class="bg-gray-50">
-    <div class="flex min-h-screen">
-        {{-- sidebar --}}
-        @include('components.sidebar') {{-- Includes the sidebar component for consistent layout --}}
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col overflow-hidden">
-            @include('components.navbar') {{-- Includes the navbar component for consistent layout --}}
-            <!-- Content Area -->
-            <main class="flex-1  bg-whiteshadow-sm p-6">
-                {{-- for the image I using the Alpine.js --}}
-                <form class="max-w-xl mx-auto p-6 bg-white shadow-lg rounded-2xl space-y-4"
-                    action="{{ route('staff.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <h2 class="text-2xl font-bold text-center">Register</h2>
+        <!-- Profile Picture -->
+        <figure class="flex flex-col items-center gap-4 border border-gray-200 rounded-lg p-4 bg-gray-50">
+            <label class="block text-gray-700 font-medium">Profile Picture</label>
 
-                    <!-- Photo -->
-                    <figure class="flex flex-col items-start space-y-2">
-                        <label class="block text-gray-700 font-medium">Profile Picture</label>
-                        <input type="file" name="profile_picture" accept="image/*" class="image-input hidden"
-                            id="customFileInput" />
-                        <img class="image-preview hidden mt-5 w-48 h-48 object-contain rounded border" />
-                        <label for="customFileInput"
-                            class="cursor-pointer text-center p-4 bg-blue-50 text-blue-700 hover:bg-blue-100 rounded-full font-semibold text-sm">
-                            <i class="fa-solid fa-image"></i>
-                        </label>
-                        @error('profile_picture')
-                            <span class="text-red-600">{{ $message }}</span>
-                        @enderror
-                    </figure>
+            <img class="image-preview hidden w-20 h-20 object-cover rounded-full border border-gray-300 shadow-sm" />
 
-                    <div class="grid md:grid-cols-2 md:gap-6">
-                        <div class="relative z-0 w-full mb-5 group">
-                            <input type="text" name="first_name" id="first_name" value="{{ old('first_name') }}"
-                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 
-                                appearance-none dark:text-black dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" " />
-                            <label for="first_name"
-                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 
-                                transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 
-                                peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First
-                                name</label>
-                            @error('first_name')
-                                <span class="text-red-600">{{ $message }}</span>
-                            @enderror
-                        </div>
+            <input type="file" name="profile_picture" accept="image/*" id="customFileInput"
+                class="image-input hidden" />
 
-                        <div class="relative z-0 w-full mb-5 group">
-                            <input type="text" name="last_name" id="last_name" value="{{ old('last_name') }}"
-                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 
-                                appearance-none dark:text-black dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" " />
-                            <label for="last_name"
-                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 
-                                transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 
-                                peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last
-                                name</label>
-                            @error('last_name')
-                                <span class="text-red-600">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
+            <label for="customFileInput"
+                class="px-4 py-2 text-sm font-semibold text-blue-700 bg-blue-100 hover:bg-blue-200 rounded-lg transition">
+                <i class="fa-solid fa-image mr-1"></i> Add Photo
+            </label>
 
-                    <div class="grid md:grid-cols-2 md:gap-6">
-                        <div>
-                            <label class="block text-gray-700 font-medium mb-1">Gender</label>
-                            <div class="flex px-2 py-2 items-center gap-4">
-                                <label class="inline-flex items-center">
-                                    <input type="radio" name="gender" value="male"
-                                        class="form-radio text-blue-500 focus:ring-blue-500"
-                                        {{ old('gender') === 'male' ? 'checked' : '' }}>
-                                    <span class="ml-2">Male</span>
-                                </label>
-                                <label class="inline-flex items-center">
-                                    <input type="radio" name="gender" value="female"
-                                        class="form-radio text-blue-500 focus:ring-blue-500"
-                                        {{ old('gender') === 'female' ? 'checked' : '' }}>
-                                    <span class="ml-2">Female</span>
-                                </label>
-                            </div>
-                            @error('gender')
-                                <span class="text-red-600">{{ $message }}</span>
-                            @enderror
-                        </div>
+            @error('profile_picture')
+                <span class="text-red-600 text-sm">{{ $message }}</span>
+            @enderror
+        </figure>
 
-                        <div class="w-3/5">
-                            <label class="block text-gray-700 font-medium mb-1">Date of birth</label>
-                            <input type="date" name="date_of_birth" value="{{ old('date_of_birth') }}"
-                                class="w-full px-2 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                            @error('date_of_birth')
-                                <span class="text-red-600">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
+        {{-- Name Fields --}}
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <label for="first_name" class="block text-left text-gray-700 font-medium mb-1">First Name</label>
+                <input type="text" name="first_name" id="first_name"
+                    class="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                    placeholder="first name">
+                @error('first_name')
+                    <span class="text-red-600 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
 
-                    <div class="relative z-0 w-full mb-5 group">
-                        <input type="email" name="email" id="email" value="{{ old('email') }}"
-                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 
-                            appearance-none dark:text-black dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
-                        <label for="email"
-                            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 
-                            transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 
-                            peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email
-                            address</label>
-                        @error('email')
-                            <span class="text-red-600">{{ $message }}</span>
-                        @enderror
-                    </div>
 
-                    <div class="relative z-0 w-full mb-5 group">
-                        <input type="password" name="password" id="password"
-                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 
-                            appearance-none dark:text-black dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
-                        <label for="password"
-                            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 
-                            transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 
-                            peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
-                        <button type="button" onclick="togglePassword('password', this)"
-                            class="absolute right-2 top-3 text-gray-500">
-                            <i class="fa fa-eye"></i>
-                        </button>
-                        @error('password')
-                            <span class="text-red-600">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="relative z-0 w-full mb-5 group">
-                        <input type="text" name="address" id="address" value="{{ old('address') }}"
-                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 
-                            appearance-none dark:text-black dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
-                        <label for="address"
-                            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 
-                            transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 
-                            peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Address</label>
-                        @error('address')
-                            <span class="text-red-600">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="relative z-0 w-full mb-5 group">
-                        <input type="text" name="phone" id="phone" value="{{ old('phone') }}"
-                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 
-                            appearance-none dark:text-black dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
-                        <label for="phone"
-                            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 
-                            transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 
-                            peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone
-                            Number</label>
-                        @error('phone')
-                            <span class="text-red-600">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <button type="submit"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 
-                        font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Submit
-                    </button>
-                </form>
-
-            </main>
+            <div>
+                <label for="last_name" class="block text-left text-gray-700 font-medium mb-1">Last Name</label>
+                <input type="text" name="last_name" id="last_name"
+                    class="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                    placeholder="last name">
+                @error('last_name')
+                    <span class="text-red-600 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
         </div>
-    </div>
-</body>
-@if (session()->has('sweet-alert'))
-    <x-sweet-alert :type="session('type')" :message="session('alert-message')" />
-@endif
-@if ($errors->any())
-    <x-sweet-alert :type="session('type')" :message="session('alert-message')" />
-@endif
-<script src="{{ asset('js/image-preview.js') }}"></script>
+        <!-- Gender & DOB -->
+        <div class="grid md:grid-cols-2 md:gap-6">
+            <div>
+                <label class="block text-gray-700 font-medium mb-2">Gender</label>
+                <div class="flex items-center text-gray-700 gap-4">
+                    <label class="inline-flex items-center gap-2">
+                        <input type="radio" name="gender" value="male" class="text-blue-600 focus:ring-blue-500"
+                            {{ old('gender') === 'male' ? 'checked' : '' }}>
+                        <span>Male</span>
+                    </label>
+                    <label class="inline-flex items-center gap-2">
+                        <input type="radio" name="gender" value="female" class="text-blue-600 focus:ring-blue-500"
+                            {{ old('gender') === 'female' ? 'checked' : '' }}>
+                        <span>Female</span>
+                    </label>
+                </div>
+                @error('gender')
+                    <span class="text-red-600 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div>
+                <label class="block text-gray-700 font-medium mb-2">Date of Birth</label>
+                <input type="date" name="date_of_birth"
+                    class="w-full rounded-lg text-gray-700 border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500" />
+                @error('date_of_birth')
+                    <span class="text-red-600 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+        <!-- Email -->
+        <div>
+            <label for="email" class="block text-left text-gray-700 font-medium mb-1">Email Address</label>
+            <input type="email" name="email" id="email"
+                class="w-full px-4 py-2 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                placeholder="Email">
+            @error('email')
+                <span class="text-red-600 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <!-- password -->
+        <div class="relative z-0 w-full group">
+            <label for="password" class="block text-left text-gray-700 font-medium mb-1">Password</label>
+            <input type="password" name="password" id="password"
+                class="w-full px-4 py-2 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                placeholder="password">
+            <button type="button" onclick="togglePassword('password', this)"
+                class="absolute right-2 top-[33px] text-gray-700 hover:text-gray-600">
+                <i class="fa fa-eye"></i>
+            </button>
+            @error('password')
+                <span class="text-red-600 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <!-- Address -->
+        <div>
+            <label for="address" class="block text-left text-gray-700 font-medium mb-1">Email Address</label>
+            <input type="text" name="address" id="address"
+                class="w-full px-4 py-2 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                placeholder="Address">
+            @error('address')
+                <span class="text-red-600 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <!-- Phone -->
+        <div>
+            <label for="phone" class="block text-left text-gray-700 font-medium mb-1">Conact Number</label>
+            <input type="text" name="phone" id="phone"
+                class="w-full px-4 py-2 border text-gray-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                placeholder="Contact Number">
+            @error('phone')
+                <span class="text-red-600 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <!-- Submit -->
+        <button type="submit"
+            class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">
+            Submit
+        </button>
+
+    </form>
+</section>
+
+{{-- <script src="{{ asset('js/image-preview.js') }}"></script> --}}
 <script src="{{ asset('js/formInput.js') }}"></script>
