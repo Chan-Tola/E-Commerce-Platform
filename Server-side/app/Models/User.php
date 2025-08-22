@@ -19,7 +19,7 @@ class User extends Authenticatable
     const USEREADDRESS = 'address';
     const USERROLE = 'role';
 
-    // 1. fillable fields (mass-assignable)
+    //note: 1. fillable fields (mass-assignable)
     protected $fillable =
     [
         self::USERNAME,
@@ -29,18 +29,18 @@ class User extends Authenticatable
         self::USEREADDRESS,
         self::USERROLE,
     ];
-    // 2. hiiden fields (not returned in JSON)
+    //note: 2. hiiden fields (not returned in JSON)
     protected $hidden =
     [
         'password',
         'remember_token'
     ];
-    // 3. Casts (type conversions)
+    //note: 3. Casts (type conversions)
     protected $casts =
     [
         'email_verified_at' => 'datetime',
     ];
-    // 4. Auto-hash password (optional but recommended)
+    //note: 4. Auto-hash password (optional but recommended)
     public function setPasswrodAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);

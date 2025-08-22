@@ -1,72 +1,68 @@
 @extends('components.header')
-@section('title', 'Login')
-<main class="h-full flex bg-[#e8e8e8] flex-col gap-[5rem] justify-center items-center">
-    <section>
-        <p class="text-4xl font-bold uppercase text-center  mt-6 mb-4">
-            Welcome to Management System
-        </p>
-    </section>
-    <section class="form relative flex flex-col rounded-xl p-3">
-        <h4 class="block m-auto uppercase text-3xl font-bold text-slate-800">
-            log in
-        </h4>
-
-        <form class="mt-2 mb-2 w-80 h-80 max-w-screen-lg sm:w-96" action="{{ route('loginSubmit') }}" method="post"
-            id="loginForm">
+@section('title', 'Login Page')
+<section class="min-h-screen bg-gray-900 flex items-center justify-center text-white">
+    <!-- Note: Place the form code here -->
+    <div class="bg-gray-800 p-8 rounded-lg shadow-2xl w-full max-w-md">
+        {{-- <div class="flex items-center mb-6">
+            <img src="https://flowbite.com/docs/images/logo.svg" alt="Flowbite Logo" class="w-10 h-10 mr-2">
+            <h2 class="text-2xl font-bold">Flowbite</h2>
+        </div> --}}
+        <h3 class="text-xl font-semibold mb-4">Welcome back</h3>
+        <p class="mb-6">Start your website in seconds. Don't have an account?
+        <form action="{{ route('loginSubmit') }}" method="post">
             @csrf
-            <div class="mb-1 flex flex-col gap-6">
-                <div class="w-full max-w-sm min-w-[200px]">
-                    <input type="email" name="email"
-                        class="w-full placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2"
-                        placeholder="Your Email" />
-                    @error('email')
-                        {{-- Displays a validation error message if the email field is not filled --}}
-                        <span class="text-red-600">Email is required</span>
-                    @enderror
-                </div>
-                <div class="w-full max-w-sm  relative min-w-[200px]">
-                    <input type="password" name="password" id="password"
-                        class="w-full placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2"
-                        placeholder="Your Password" />
-                    <button type="button" onclick="togglePassword('password', this)"
-                        class="absolute right-2 top-3 text-gray-500">
-                        <i class="fa fa-eye"></i>
-                    </button>
-                    @error('password')
-                        {{-- Displays a validation error message if the email field is not filled --}}
-                        <span class="text-red-600">Password is required</span>
-                    @enderror
-                </div>
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+                <input type="email" name="email" id="email" placeholder="name@company.com"
+                    class="mt-1 w-full p-2 bg-gray-700 border border-gray-600 rounded-lg text-[#5F6368] focus:outline-none focus:ring-2 focus:ring-blue-500">
+                @error('email')
+                    {{-- Displays a validation error message if the email field is not filled --}}
+                    <span class="text-red-600">Email is required</span>
+                @enderror
             </div>
-            <div class="inline-flex items-center mt-2">
-                <label class="flex items-center cursor-pointer relative" for="check-2">
-                    <input type="checkbox"
-                        class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-slate-800 checked:border-slate-800"
-                        id="check-2" />
-                    <span
-                        class="absolute text-white opacity-0 pointer-events-none peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20"
-                            fill="currentColor" stroke="currentColor" stroke-width="1">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </span>
-                </label>
-                {{-- this is about the coockie session  --}}
-                <label class="cursor-pointer ml-2 text-slate-600 text-sm" for="check-2">
-                    Remember Me
-                </label>
+            <div class="mb-6 relative">
+                <label for="password" class="block text-sm font-medium text-gray-300">Password</label>
+                <input type="password" name="password" id="password" placeholder="••••••••"
+                    class="mt-1 w-full p-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button type="button" onclick="togglePassword('password', this)"
+                    class="absolute right-1 top-[2.4rem] text-gray-500">
+                    <i class="fa fa-eye"></i>
+                </button>
+                @error('password')
+                    {{-- Displays a validation error message if the email field is not filled --}}
+                    <span class="text-red-600">Password is required</span>
+                @enderror
             </div>
-            <button
-                class="oauthButton mt-4 w-full py-2 px-4 border rounded-md relative overflow-hidden cursor-pointer text-center text-sm transition-all"
-                type="submit">
-                <div>
-                    Sign Up
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center">
+                    <input type="checkbox" id="remember" class="mr-2 accent-blue-500">
+                    <label for="remember" class="text-sm text-gray-300">Remember me</label>
                 </div>
-            </button>
+                <a href="#" class="text-sm text-blue-400 hover:underline">Forgot password?</a>
+            </div>
+            <button type="submit"
+                class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition">Sign in to your
+                account</button>
         </form>
-    </section>
+
+        <div class="mt-6 text-center">
+            <p class="text-gray-400">or</p>
+            <button
+                class="w-full bg-gray-700 text-white p-2 rounded-lg mt-4 flex items-center justify-center hover:bg-gray-600 transition">
+                <img src="https://www.google.com/favicon.ico" alt="Google" class="w-5 h-5 mr-2"> Sign in with
+                Google
+            </button>
+            <button
+                class="w-full bg-gray-700 text-white p-2 rounded-lg mt-2 flex items-center justify-center hover:bg-gray-600 transition">
+                <img src="https://www.apple.com/favicon.ico" alt="Apple" class="w-5 h-5 mr-2"> Sign in with Apple
+            </button>
+        </div>
+    </div>
+    <!-- Note: Place the 3D illustration image here -->
+    <div class="ml-14 max-h-full hidden lg:block">
+        <img src="{{ asset('uploads/Auth/adventure.svg') }}" alt="3D Illustration" class="w-auto h-full">
+    </div>
+    {{-- C:\Users\ASUS\Desktop\E-Commerce-Platform\Server-side\public\\\ --}}
     <!-- Custom Loading Overlay -->
     <section id="custom-loader"
         class="hidden fixed inset-0 bg-[#212121] bg-opacity-80 z-50 flex items-center justify-center">
@@ -76,13 +72,10 @@
             <div class="w-[20px] h-[20px] rounded-full bg-white animate-bounce" style="animation-delay: -0.5s;"></div>
         </div>
     </section>
-
-
     @if (session('sweet-alert'))
         <x-sweet-alert type="error" :message="session('alert-message')" />
     @endif
-
-</main>
+</section>
 @push('login-script')
     <script src="{{ asset('js/auth-login.js') }}"></script>
     <script src="{{ asset('js/formInput.js') }}"></script>

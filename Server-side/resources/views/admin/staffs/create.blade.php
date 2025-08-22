@@ -140,6 +140,5 @@
 
     </form>
 </section>
-
-{{-- <script src="{{ asset('js/image-preview.js') }}"></script> --}}
+<script src="{{ asset('js/image-preview.js') }}"></script>
 <script src="{{ asset('js/formInput.js') }}"></script>

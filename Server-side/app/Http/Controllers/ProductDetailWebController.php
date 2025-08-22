@@ -10,9 +10,7 @@ use Illuminate\Http\Request;
 
 class ProductDetailWebController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //todo: function show all product detail
     public function index()
     {
         $totalProducts = Product::count();
@@ -21,19 +19,13 @@ class ProductDetailWebController extends Controller
         $productDetails = ProductDetail::with('product')->get();
         return view('admin.product_details.index', compact('totalProducts', 'totalStaffs', 'totalUsers', 'productDetails'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
+    //todo: function for show form add new product detail
     public function create()
     {
         $productDetails = Product::get();
         return view('admin.product_details.create', compact('productDetails'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    //todo: function for insert data into database
     public function store(Request $request)
     {
         $request->validate([
@@ -53,18 +45,13 @@ class ProductDetailWebController extends Controller
             'alert-message' => 'Added Successfully!' //note: this will be used for the message
         ]);
     }
-    /**
-     * Show the form for editing the specified resource.
-     */
+    //todo: function for show form edit product detail
     public function edit(string $id)
     {
         $product_detail = ProductDetail::find($id);
         return view('admin.product_details.edit', compact('product_detail'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
+    //todo: function for update product detail data
     public function update(Request $request, string $id)
     {
         $validate = $request->validate([
@@ -80,14 +67,13 @@ class ProductDetailWebController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    //todo: function for show form delete product detail
     public function delete(string $id)
     {
         $product_detail = ProductDetail::findOrFail($id);
         return view('admin.product_details.delete', compact('product_detail'));
     }
+    //todo: function for destroy product detail
     public function destroy(string $id)
     {
         $deleted = ProductDetail::findOrFail($id);

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class UserWebController extends Controller
 {
-    // function show all
+    //todo: function show all
     public function index()
     {
         $users = User::all();
@@ -19,7 +19,7 @@ class UserWebController extends Controller
         return view('admin.users.index', compact('users', 'totalProducts', 'totalStaffs', 'totalUsers'));
     }
 
-    // function create user
+    //todo: function create user
     public function create()
     {
         return view('admin.users.create');

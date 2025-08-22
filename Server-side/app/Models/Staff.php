@@ -11,7 +11,7 @@ class Staff extends Authenticatable
     use HasFactory, HasRoles;
     const TABLENAME = 'tbstaff';
     protected $table = self::TABLENAME;
-    // Column constants
+    //note: Column constants
     const ID = 'id';
     const FIRST_NAME = 'first_name';
     const LAST_NAME = 'last_name';
@@ -26,9 +26,9 @@ class Staff extends Authenticatable
     const STATUS = 'status';
     const PROFILE = 'profile_picture';
 
-    // Status enum constants
+    //note: Status enum constants
     const STATUS_ACTIVE = 'active';
-    const STATUS_RESIGNED = 'resigned';
+    const STATUS_RESIGNED = 'offline';
 
 
     protected $fillable =

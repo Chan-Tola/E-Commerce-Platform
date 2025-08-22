@@ -34,9 +34,9 @@ class AuthenticationController extends Controller
         //note: Attempt authentication
         if (Auth::guard('staff')->attempt($data)) {
             $user = Auth::guard('staff')->user();
-            /** @var Staff|null $user */  //todo: Helps editor know $user is Staff model
+            /** @var Staff|null $user */  //note: Helps editor know $user is Staff model
             if ($user) {
-                $user->status = 'active'; //todo: Set the user's status to offline
+                $user->status = 'active'; //note: Set the user's status to offline
                 $user->save();
             }
             return redirect()->route('index')->with([
@@ -52,12 +52,12 @@ class AuthenticationController extends Controller
     }
 
     //TODO: function logout
-    public function logout(Request $request)
+    public function logout()
     {
         $user = Auth::guard('staff')->user();
-        /** @var Staff|null $user */  //todo: Helps editor know $user is Staff model
+        /** @var Staff|null $user */  //note: Helps editor know $user is Staff model
         if ($user) {
-            $user->status = 'offline'; //todo: Set the user's status to offline
+            $user->status = 'offline'; //note: Set the user's status to offline
             $user->save();
         }
         Auth::guard('staff')->logout(); //NOTE: Logout the user from the 'staff' guard

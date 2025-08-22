@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    // your table name
+    //note: Table name
     const TABLENAME = 'tbproduct';
     const ID = 'id';
     const NAME = 'name';

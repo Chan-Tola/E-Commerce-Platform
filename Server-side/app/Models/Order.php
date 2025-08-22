@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    // TABLE NAME
+    //note:TABLE NAME
     const TABLENAME = 'order';
-    const ORDER_CODE = 'id'; //PK
+    const ORDER_CODE = 'id'; //todo:PK
     const ORDER_QTY  = 'quantity';
     const TOTAL = 'total';
 

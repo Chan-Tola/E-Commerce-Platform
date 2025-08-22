@@ -113,3 +113,10 @@
         });
     </script>
 @endsection
+{{-- note: success button --}}
+@if (session()->has('sweet-alert'))
+    <x-sweet-alert :type="session('type')" :message="session('alert-message')" />
+@endif
+@if ($errors->any())
+    <x-sweet-alert :type="session('type')" :message="session('alert-message')" />
+@endif
